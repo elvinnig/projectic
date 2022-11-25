@@ -15,18 +15,23 @@ const helmet = require('helmet');
 //TODO: Database connection ( for the meantime )
 mongoose.connect('mongodb://127.0.0.1:27017/projectic');
 
-//* Midleware
+//* Middleware
 server.use( morgan('dev') );
 server.use( cors() );
 server.use( bodyParser.json() );
 server.use( helmet() );
 
-//*Routes
+
+//*Routes for files
 const BadgeRouter = require('./routes/badges');
 const UserRouter = require('./routes/users');
+const FileTypeRouter = require('./routes/filetypes');
 
+//*Routes
 server.use('/api/v1/badges', BadgeRouter);
 server.use('/api/v1/users', UserRouter);
+server.use('/api/v1/filetypes', FileTypeRouter);
+
 
 //*Server
 server.listen(
