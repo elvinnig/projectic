@@ -39,7 +39,7 @@ Badge.patch('/:filesId', ( request, response ) => {
     });
 });
 
-//TODO: DELETE badges/:id
+//TODO: DELETE files/:filesId
 router.delete('/:filesId', (request,response)=>{
     Client.deleteOne({_id: request.params.filesId})
     .then(result => {
