@@ -1,4 +1,3 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -13,8 +12,19 @@ router.post('/', ( request, response ) => {
     });
 });
 
-//TODO: GET badges/:id
-router.get('/:badgesId', (request, response) => {
+//? GET all badges
+router.get('/', (request, response) => {
+    Badge.find( { } )
+    .then( (result) => {
+        console.log( result );
+        if( typeof result === 'object' ){
+            response.status(202).send( result );
+        }
+    });
+});
+
+//TODO: GET badges/:badgeId
+router.get('/:badgeId', (request, response) => {
     Badge.findOne(
         { _id: request.params.badgesId }
         )
@@ -26,11 +36,11 @@ router.get('/:badgesId', (request, response) => {
     });
 });
 
-//TODO: PATCH badges/:id
-Badge.patch('/:badgesId', ( request, response ) => {
-    const badgeId = request.params.badgesId;
+//TODO: PATCH badges/:badgeId
+Badge.patch('/:badgeId', ( request, response ) => {
+    const addBadgeId = request.params.badgeId;
     Badge.updateOne(
-        { _id: badgeId }, 
+        { _id: addBadgeId }, 
         { $set: { ...request.body } })
     .then( result => {
         if( result.modifiedCount === 1 ){
@@ -39,9 +49,9 @@ Badge.patch('/:badgesId', ( request, response ) => {
     });
 });
 
-//TODO: DELETE badges/:id
-router.delete('/:badgesId', (request,response)=>{
-    Badge.deleteOne({_id: request.params.badgesId})
+//TODO: DELETE badges/:badgeId
+router.delete('/:badgeId', (request,response)=>{
+    Badge.deleteOne({_id: request.params.badgeId})
     .then(result => {
         if (result.deletedCount === 1 ){
             response.status(200).send({status:'Client removed'})
