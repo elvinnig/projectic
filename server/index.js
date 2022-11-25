@@ -21,17 +21,17 @@ server.use( cors() );
 server.use( bodyParser.json() );
 server.use( helmet() );
 
-
 //*Routes for files
 const BadgeRouter = require('./routes/badges');
 const UserRouter = require('./routes/users');
 const FileTypeRouter = require('./routes/filetypes');
+const FileRouter = require('./routes/files');
 
 //*Routes
 server.use('/api/v1/badges', BadgeRouter);
 server.use('/api/v1/users', UserRouter);
 server.use('/api/v1/filetypes', FileTypeRouter);
-
+server.use('/api/v1/files', FileRouter);
 
 //*Server
 server.listen(
@@ -39,4 +39,5 @@ server.listen(
     () => {
         console.log(`Server running on port ${port}`);
     }
-)
+);
+
