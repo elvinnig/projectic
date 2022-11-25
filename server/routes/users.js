@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 //*Models
-const User = require('../models/Users');
+const User = require('../models/User');
 
 //TODO: GET users/:id
 router.get('/:usersId', (request, response) => {
     User.findOne(
-        { email: request.params.email },
+        { _id: request.params.userId },
         { password: 0 }
         )
     .then( (result) => {
@@ -20,7 +20,7 @@ router.get('/:usersId', (request, response) => {
 });
 
 //TODOl: PATCH users/:id
-router.put('/:usersId', ( request, response ) => {
+router.patch('/:usersId', ( request, response ) => {
     const userId = request.params.usersId;
     User.updateOne(
         { _id: userId }, 
@@ -32,3 +32,4 @@ router.put('/:usersId', ( request, response ) => {
     });
 });
 
+module.exports = router;
