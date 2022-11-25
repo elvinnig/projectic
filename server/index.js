@@ -16,22 +16,19 @@ const helmet = require('helmet');
 mongoose.connect('mongodb://127.0.0.1:27017/projectic');
 
 //* Midleware
-server.use( morgan('dev') );
-server.use( cors() );
-server.use( bodyParser.json() );
-server.use( helmet() );
+server.use(morgan('dev'));
+server.use(cors());
+server.use(bodyParser.json());
+server.use(helmet());
 
 //*Routes
 const AuthRouter = require('./routes/auth');
 const UserRouter = require('./routes/users');
 
-server.use('/api/v1/auth', AuthRouter );
+server.use('/api/v1/auth', AuthRouter);
 server.use('/api/v1/users', UserRouter);
 
 //*Server
-server.listen(
-    port,
-    () => {
-        console.log(`Server running on port ${port}`);
-    }
-)
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
