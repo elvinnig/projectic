@@ -1,4 +1,3 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -13,10 +12,21 @@ router.post('/', ( request, response ) => {
     });
 });
 
-//TODO: GET filetypes/:filetypeId
-router.get('/:filetypesId', (request, response) => {
+//TODO: GET all filestype
+router.get('/', (request, response) => {
+    FileType.find( { } )
+    .then( (result) => {
+        console.log( result );
+        if( typeof result === 'object' ){
+            response.status(202).send( result );
+        }
+    });
+});
+
+//TODO: GET filetypes/:fileTypeId
+router.get('/:fileTypeId', (request, response) => {
     FileType.findOne(
-        { _id: request.params.filetypesId }
+        { _id: request.params.fileTypeId }
         )
     .then( (result) => {
         console.log( result );
@@ -27,8 +37,8 @@ router.get('/:filetypesId', (request, response) => {
 });
 
 //TODO: PATCH filetypes/:filetypeId
-Badge.patch('/:filetypesId', ( request, response ) => {
-    const filetypeId = request.params.filetypesId;
+Badge.patch('/:fileTypeId', ( request, response ) => {
+    const filetypeId = request.params.fileTypeId;
     FileType.updateOne(
         { _id: filetypeId }, 
         { $set: { ...request.body } })
@@ -40,8 +50,8 @@ Badge.patch('/:filetypesId', ( request, response ) => {
 });
 
 //TODO: DELETE filetypes/:filetypeId
-router.delete('/:filetypesId', (request,response)=>{
-    FileType.deleteOne({_id: request.params.filetypesId})
+router.delete('/:fileTypeId', (request,response)=>{
+    FileType.deleteOne({_id: request.params.fileTypeId})
     .then(result => {
         if (result.deletedCount === 1 ){
             response.status(200).send({status:'File removed'})
