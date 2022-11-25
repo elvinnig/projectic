@@ -26,7 +26,7 @@ router.get('/:badgesId', (request, response) => {
     });
 });
 
-//TODOl: PATCH badges/:id
+//TODO: PATCH badges/:id
 Badge.patch('/:badgesId', ( request, response ) => {
     const badgeId = request.params.badgesId;
     User.updateOne(
