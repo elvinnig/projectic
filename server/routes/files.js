@@ -1,4 +1,3 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -14,7 +13,7 @@ router.post('/', ( request, response ) => {
 });
 
 //TODO: GET files/:filesId
-router.get('/:filesId', (request, response) => {
+router.get('/:fileId', (request, response) => {
     File.findOne(
         { _id: request.params.filesId }
         )
@@ -27,10 +26,10 @@ router.get('/:filesId', (request, response) => {
 });
 
 //TODO: PATCH files/:filesId
-Badge.patch('/:filesId', ( request, response ) => {
-    const fileId = request.params.filesId;
+Badge.patch('/:fileId', ( request, response ) => {
+    const addFileId = request.params.fileId;
     File.updateOne(
-        { _id: fileId }, 
+        { _id: addFileId }, 
         { $set: { ...request.body } })
     .then( result => {
         if( result.modifiedCount === 1 ){
@@ -40,8 +39,8 @@ Badge.patch('/:filesId', ( request, response ) => {
 });
 
 //TODO: DELETE files/:filesId
-router.delete('/:filesId', (request,response)=>{
-    File.deleteOne({_id: request.params.filesId})
+router.delete('/:fileId', (request,response)=>{
+    File.deleteOne({_id: request.params.fileId})
     .then(result => {
         if (result.deletedCount === 1 ){
             response.status(200).send({status:'File removed'})
