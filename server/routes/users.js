@@ -8,7 +8,7 @@ const User = require('../models/User');
 //TODO: GET users/:id
 router.get('/:usersId', (request, response) => {
     User.findOne(
-        { _id: request.params.userId },
+        { _id: request.params.usersId },
         { password: 0 }
         )
     .then( (result) => {
