@@ -1,14 +1,13 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 
 //*Models
 const User = require('../models/User');
 
-//TODO: GET users/:id
-router.get('/:usersId', (request, response) => {
+//TODO: GET users/:userId
+router.get('/:userId', (request, response) => {
     User.findOne(
-        { _id: request.params.usersId },
+        { _id: request.params.userId },
         { password: 0 }
         )
     .then( (result) => {
@@ -19,11 +18,11 @@ router.get('/:usersId', (request, response) => {
     });
 });
 
-//TODOl: PATCH users/:id
-router.patch('/:usersId', ( request, response ) => {
-    const userId = request.params.usersId;
+//TODOl: PATCH users/:userId
+router.patch('/:userId', ( request, response ) => {
+    const addUserId = request.params.userId;
     User.updateOne(
-        { _id: userId }, 
+        { _id: addUserId }, 
         { $set: { ...request.body } })
     .then( result => {
         if( result.modifiedCount === 1 ){
