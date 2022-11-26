@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+//* Logo
+import logo from '../assets/logo/2.png'
+
 function LoginPage() {
   //* two way binding
   const [username, setUsername] = useState('');
@@ -12,8 +15,7 @@ function LoginPage() {
   return (
     <div className='vh-100 w-100 d-flex justify-content-center align-items-center'>
       <div className='w-50 p-5 rounded-3 d-flex flex-column align-items-center'>
-        {/*TODO ADD LOGO HERE  */}
-        <img alt='logo_here' src='#' className='rounded-circle mb-3' />
+        <img alt='logo_here' src={logo} className='rounded-circle w-25' />
         <small className='mb-3'>Sign in to continue</small>
         <form
           className='w-50'
@@ -29,7 +31,7 @@ function LoginPage() {
               type='text'
               className='form-control'
               id='username'
-              placeholder='Enter username:'
+              placeholder='Enter username'
               required
               value={username}
               onChange={(e) => {
@@ -45,7 +47,7 @@ function LoginPage() {
               type='password'
               className='form-control'
               id='password'
-              placeholder='Enter password:'
+              placeholder='Enter password'
               required
               value={password}
               onChange={(e) => {
@@ -54,7 +56,7 @@ function LoginPage() {
             />
           </div>
           <div className='mb-3 d-flex justify-content-end mb-5'>
-            <a href='/' className='link-primary'>
+            <a href='/users/log_in' className='link-primary'>
               Forgot Password?
             </a>
           </div>
@@ -69,7 +71,7 @@ function LoginPage() {
         <p>
           Don't have an account?{' '}
           <span>
-            <a href='/' className='link-primary'>
+            <a href='/users/sign_up' className='link-primary'>
               Sign Up
             </a>
           </span>
