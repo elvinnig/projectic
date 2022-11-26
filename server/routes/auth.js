@@ -9,15 +9,22 @@ const bcrypt = require('bcrypt');
 
 //TODO: POST users/register
 router.post('/register', async ( request, response ) => {
-    //*Hashing password
-    const hashedPassword = await bcrypt.hash( request.body.password, 10 );
-    const newUser = new User({
+    let newUser;
+   if(request.body.password === undefined){
+     newUser = new User({
         ...request.body,
-        password: hashedPassword
+    })
+   } else{
+    let hashedPassword = await bcrypt.hash(request.body.password, 10);
+
+    newUser = new User({
+        ...request.body,
+        password: hashedPassword,
     });
     newUser.save().then( result => {
-        response.send({ status: 'User has been created' });
+        response.send({ status: 'User has been created', id: result._id});
     });
+   }
 });
 
 //TODO: POST users/login
