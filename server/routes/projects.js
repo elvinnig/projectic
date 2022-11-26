@@ -21,7 +21,7 @@ router.get('/:projectsId', (request, response) => {
 // CREATE A NEW PROJECT
 // Parameter ID is the author of the project
 //TODO: GET projects/:id
-router.project('/:id', ( request, response ) => {
+router.post('/:id', ( request, response ) => {
     let newProject = new Project({
         ...request.body,
         author: request.params.id

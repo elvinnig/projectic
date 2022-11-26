@@ -4,7 +4,7 @@ const ProjectSchema = new mongoose.Schema({
     name: String,
     description:  String,
     thumbnail: String,
-    souceLink: Array,
+    souceLink: [String],
     dateCreated: { type: Date, default: Date.now },
     dateUpdated: { type: Date, default: Date.now },
     authorID: { 
@@ -12,10 +12,10 @@ const ProjectSchema = new mongoose.Schema({
         ref: 'User'
     },
     badgeID: 
-        { type: mongoose.Schema.Types.ObjectId , ref: 'Badges' 
+        { type: mongoose.Schema.Types.ObjectId , ref: 'Badge' 
     },
     fileID: 
-        { type: mongoose.Schema.Types.ObjectId , ref: 'Files' 
+        { type: mongoose.Schema.Types.ObjectId , ref: 'File' 
     }    
     
 });
