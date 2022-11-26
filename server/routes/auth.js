@@ -1,7 +1,6 @@
 //* Express
 const express = require('express');
 const router = express.Router();
-
 //*Models
 const User = require('../models/User');
 //*Bcrypt
@@ -23,7 +22,7 @@ router.post('/register', async ( request, response ) => {
 
 //TODO: POST users/login
 router.post('/login', ( request, response ) => {
-    User.findOne({ email: request.body.email }).then( result => {
+    User.findOne({ username: request.body.username }).then( result => {
         if(result === null){
             response.status(404).send({
                 status : 'Not Found'
@@ -35,9 +34,6 @@ router.post('/login', ( request, response ) => {
                 response.status(200).send({ 
                     status: 'User', 
                     id: result._id,
-                    firstName: result.firstname,
-                    lastName: result.lastname,
-                    email: result.email
                 });
             }
             else{
