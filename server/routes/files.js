@@ -26,7 +26,7 @@ router.get('/:fileId', (request, response) => {
 });
 
 //TODO: PATCH files/:filesId
-Badge.patch('/:fileId', ( request, response ) => {
+router.patch('/:fileId', ( request, response ) => {
     const addFileId = request.params.fileId;
     File.updateOne(
         { _id: addFileId }, 
