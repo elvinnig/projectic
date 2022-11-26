@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 
  {
  "name": "server",
+=======
+{
+  "name": "server",
+>>>>>>> 8d080d022b114dc42aa48de7caa863e940275538
   "version": "1.0.0",
   "description": "Server for porjectic",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
+=======
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+>>>>>>> 8d080d022b114dc42aa48de7caa863e940275538
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,6 +23,10 @@
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+=======
+    "dotenv": "^16.0.3",
+>>>>>>> 8d080d022b114dc42aa48de7caa863e940275538
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "mongoose": "^6.7.3",

@@ -1,0 +1,9 @@
+const mongoose = require('mongoose');
+
+//*Schema
+const FileSchema = new mongoose.Schema({
+    fileTypeId: {type: mongoose.Types.ObjectId, ref: 'FileType'},
+    fileLink:String
+});
+
+module.exports = mongoose.model('File', FileSchema);
