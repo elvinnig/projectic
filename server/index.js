@@ -2,10 +2,8 @@
 const express = require('express');
 const server = express();
 
-//* Port
-const port = 8000;
-
 //*Imports
+require('dotenv').config();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -13,13 +11,13 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 //TODO: Database connection ( for the meantime )
-mongoose.connect('mongodb://127.0.0.1:27017/projectic');
+mongoose.connect(process.env.MONGODB_URL);
 
 //* Middleware
-server.use( morgan('dev') );
-server.use( cors() );
-server.use( bodyParser.json() );
-server.use( helmet() );
+server.use(morgan('dev'));
+server.use(cors());
+server.use(bodyParser.json());
+server.use(helmet());
 
 //*Routes for files
 const BadgeRouter = require('./routes/badges');
@@ -34,10 +32,6 @@ server.use('/api/v1/filetypes', FileTypeRouter);
 server.use('/api/v1/files', FileRouter);
 
 //*Server
-server.listen(
-    port,
-    () => {
-        console.log(`Server running on port ${port}`);
-    }
-);
-
+server.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+});
