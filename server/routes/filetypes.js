@@ -37,7 +37,7 @@ router.get('/:fileTypeId', (request, response) => {
 });
 
 //TODO: PATCH filetypes/:filetypeId
-Badge.patch('/:fileTypeId', ( request, response ) => {
+router.patch('/:fileTypeId', ( request, response ) => {
     const filetypeId = request.params.fileTypeId;
     FileType.updateOne(
         { _id: filetypeId }, 
