@@ -8,7 +8,7 @@ const ProjectSchema = new mongoose.Schema({
     dateCreated: { type: Date, default: Date.now },
     dateUpdated: { type: Date, default: Date.now },
     authorID: { 
-        type: mongoose.Schema.Types.ObjectId,n
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     badgeID: 

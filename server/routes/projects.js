@@ -8,16 +8,20 @@ const Project = require('../models/Project');
 // RETURN ALL CONTENTS ON A CERTAIN PROJECT
 //TODO: GET projects/:id
 router.get('/:projectsId', (request, response) => {
-    Project.findOne(
-        { _id: request.params.projectsId },
-        )
-    .then( (result) => {
+    Project
+    .find(
+        { _id: request.params.id },
+        { 
+            posts: 1
+        })
+    .populate('badge', '-author -__v')
+    .exec( (error, result) => {
         console.log( result );
         if( typeof result === 'object' ){
-            response.status(202).send( result );
+            response.send( result );
         }
     });
-});
+})
 
 // CREATE A NEW PROJECT
 // Parameter ID is the author of the project
