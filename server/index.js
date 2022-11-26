@@ -21,10 +21,17 @@ server.use( cors() );
 server.use( bodyParser.json() );
 server.use( helmet() );
 
+
 //*Routes for files
+const BadgeRouter = require('./routes/badges');
+const UserRouter = require('./routes/users');
 const FileTypeRouter = require('./routes/filetypes');
 
+//*Routes
+server.use('/api/v1/badges', BadgeRouter);
+server.use('/api/v1/users', UserRouter);
 server.use('/api/v1/filetypes', FileTypeRouter);
+
 
 //*Server
 server.listen(
