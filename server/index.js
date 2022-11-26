@@ -23,8 +23,10 @@ server.use( helmet() );
 
 //*Routes
 const BadgeRouter = require('./routes/badges');
+const UserRouter = require('./routes/users');
 
 server.use('/api/v1/badges', BadgeRouter);
+server.use('/api/v1/users', UserRouter);
 
 //*Server
 server.listen(
