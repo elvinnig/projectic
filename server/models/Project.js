@@ -11,11 +11,11 @@ const ProjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    badgeID: 
-        { type: mongoose.Schema.Types.ObjectId , ref: 'Badges' 
-    },
+    badgeID: [
+        { type: mongoose.Schema.Types.ObjectId , ref: 'Badge' 
+    }],
     fileID: 
-        { type: mongoose.Schema.Types.ObjectId , ref: 'Files' 
+        { type: mongoose.Schema.Types.ObjectId , ref: 'File' 
     }    
     
 });

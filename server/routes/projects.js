@@ -6,14 +6,14 @@ const Project = require('../models/Project');
 
 // RETURN ALL CONTENTS ON A CERTAIN PROJECT
 //TODO: GET projects/:id
-router.get('/:projectsId', (request, response) => {
+router.get('/:projectID', (request, response) => {
     Project
     .find(
-        { _id: request.params.id },
+        { _id: request.params.badgeID },
         { 
             posts: 1
         })
-    .populate('badge', '-author -__v')
+    .populate('badgeID', 'name')
     .exec( (error, result) => {
         console.log( result );
         if( typeof result === 'object' ){
@@ -25,10 +25,10 @@ router.get('/:projectsId', (request, response) => {
 // CREATE A NEW PROJECT
 // Parameter ID is the author of the project
 //TODO: GET projects/:id
-router.project('/:id', ( request, response ) => {
+router.project('/:projectID', ( request, response ) => {
     let newProject = new Project({
         ...request.body,
-        author: request.params.id
+        authorID: request.params.id
     });
     newProject.save().then( result => {
         response.send({ status: "New project has been created" });
@@ -39,10 +39,10 @@ router.project('/:id', ( request, response ) => {
 
 //UPDATE A PROJECT
 //TODOl: PATCH projects/:id
-router.put('/:id', ( request, response ) => {
+router.put('/:projectID', ( request, response ) => {
     const projectId = request.params.id;
     Project.updateOne(
-        { _id: projectId }, 
+        { _id: projectID }, 
         { $set: { ...request.body } })
     .then( result => {
         if( result.modifiedCount === 1 ){
@@ -54,7 +54,7 @@ router.put('/:id', ( request, response ) => {
 
 // DELETE A PROJECT
 //TODO: GET projects/:id
-router.delete('/:id', ( request, response ) => {
+router.delete('/:projectID', ( request, response ) => {
     Project.deleteOne({ _id: request.params.id })
     .then( result => {
         if( result.deletedCount === 1 ){
