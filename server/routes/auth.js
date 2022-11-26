@@ -5,21 +5,48 @@ const router = express.Router();
 const User = require('../models/User');
 //*Bcrypt
 const bcrypt = require('bcrypt');
-
+//* env configuration
+const dotenv = require('dotenv');
+dotenv.config();
+//* transporter
+const transporter = require('../modules/transporter');
 
 //TODO: POST users/register
-router.post('/register', async ( request, response ) => {
-    //*Hashing password
-    const hashedPassword = await bcrypt.hash( request.body.password, 10 );
+router.post('/register', async (request, response) => {
+    /* 
+      TODO
+      Admin will register the new employee
+      send an email to the employee 
+      */
+    const hashedPassword = await bcrypt.hash(request.body.password, 10);
     const newUser = new User({
-        ...request.body,
-        password: hashedPassword
+      ...request.body,
+      password: hashedPassword,
+      isAdmin: false,
+      qrCode: `${request.body.firstname}_${request.body.lastname}`,
     });
-    newUser.save().then( result => {
-        response.send({ status: 'User has been created', id:result._id });
+    let greet = request.body.username;
+    newUser.save().then((result) => {
+      // TODO send email
+      transporter.sendMail(
+        {
+          from: process.env.EMAIL,
+          to: request.body.email,
+          subject: 'User Account Set up',
+          text: `Hello ${greet} Greetings from Projectic.Co, \n\n Your account has been created. \n Email: ${request.body.email}\n
+        Password: secret \n\n Kindly update your password immediately \n\n\n\n Truly yours\n Admin`,
+        },
+        function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        }
+      );
+      response.send({ status: 'New User Added!' });
     });
-});
-
+  });
 
 //TODO: POST users/login
 router.post('/login', ( request, response ) => {
