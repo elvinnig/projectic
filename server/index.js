@@ -22,12 +22,14 @@ server.use( bodyParser.json() );
 server.use( helmet() );
 
 //*Routes for files
+const AuthRouter = require('./routes/auth');
 const BadgeRouter = require('./routes/badges');
 const UserRouter = require('./routes/users');
 const FileTypeRouter = require('./routes/filetypes');
 const FileRouter = require('./routes/files');
 
 //*Routes
+server.use('/api/v1/auth', AuthRouter );
 server.use('/api/v1/badges', BadgeRouter);
 server.use('/api/v1/users', UserRouter);
 server.use('/api/v1/filetypes', FileTypeRouter);
