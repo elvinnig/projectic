@@ -22,13 +22,8 @@ server.use(bodyParser.json());
 server.use(helmet());
 
 //*Routes
-const AuthRouter = require('./routes/auth');
-const UserRouter = require('./routes/users');
 const ProjectRouter = require('./routes/projects')
 
-
-server.use('/api/v1/auth', AuthRouter);
-server.use('/api/v1/users', UserRouter);
 server.use('/api/v1/projects', ProjectRouter);
 
 //*Server

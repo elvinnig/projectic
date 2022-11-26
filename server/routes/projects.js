@@ -5,14 +5,24 @@ const router = express.Router();
 const Project = require('../models/Project');
 
 // RETURN ALL CONTENTS ON A CERTAIN PROJECT
-//TODO: GET projects/:id
+//TODO: POST projects
+router.post('/', ( request, response ) => {
+    let newProject = new Project({
+        ...request.body
+    });
+    newProject.save().then( result => {
+        response.send({ status: "New project has been created" });
+    });
+});
+
+//TODO: GET projects/:projectID
+//*this populate the badge 
 router.get('/:projectID', (request, response) => {
     Project
-    .find(
-        { _id: request.params.badgeID },
-        { 
-            posts: 1
-        })
+    .findOne(
+        { _id: request.params.projectID },
+        { badgeID: 1}
+        )
     .populate('badgeID', 'name')
     .exec( (error, result) => {
         console.log( result );
@@ -21,32 +31,28 @@ router.get('/:projectID', (request, response) => {
         }
     });
 })
-
-// CREATE A NEW PROJECT
-// Parameter ID is the author of the project
-//TODO: GET projects/:id
-router.project('/:projectID', ( request, response ) => {
-    let newProject = new Project({
-        ...request.body,
-        authorID: request.params.id
-    });
-    newProject.save().then( result => {
-        response.send({ status: "New project has been created" });
+//TODO: PUT the badgeID into the the array
+//* this put the badge into the project
+router.put('/:projectID/badges/:badgeID', ( request, response ) => {
+    Client.updateOne(
+        { _id: request.params.projectID }, 
+        { $push: { badgeID: request.params.badgeID }}
+    ).then( result => {
+        if( result.modifiedCount === 1 ){
+            response.status(202).send({ status: "Badge has been added to Project" });
+        }
     });
 });
 
-
-
-//UPDATE A PROJECT
-//TODOl: PATCH projects/:id
-router.put('/:projectID', ( request, response ) => {
-    const projectId = request.params.id;
+//TODO: PATCH projects/:id
+router.patch('/:projectID', ( request, response ) => {
+    const addProjectId = request.params.projectID;
     Project.updateOne(
-        { _id: projectID }, 
+        { _id: addProjectId }, 
         { $set: { ...request.body } })
     .then( result => {
         if( result.modifiedCount === 1 ){
-            response.send({ status: "Project has been updated" });
+            response.status(200).send({ status: "Project has been updated" });
         }
     });
 });
@@ -54,15 +60,16 @@ router.put('/:projectID', ( request, response ) => {
 
 // DELETE A PROJECT
 //TODO: GET projects/:id
-router.delete('/:projectID', ( request, response ) => {
-    Project.deleteOne({ _id: request.params.id })
-    .then( result => {
-        if( result.deletedCount === 1 ){
-            response.send({
-                status: "Project has been deleted"
-            });
+router.delete('/:projectID', (request,response)=>{
+    Project.deleteOne({_id: request.params.projectID})
+    .then(result => {
+        if (result.deletedCount === 1 ){
+            response.status(200).send({status:'Client removed'})
+    } else {
+        response.status(404).send({status:'This client is already deleted'})
+        return 
         }
-    });
+    })
 });
 
 
