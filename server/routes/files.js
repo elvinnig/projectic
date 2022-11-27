@@ -15,7 +15,7 @@ router.post('/', ( request, response ) => {
 //TODO: GET files/:filesId
 router.get('/:fileId', (request, response) => {
     File.findOne(
-        { _id: request.params.filesId }
+        { _id: request.params.fileId }
         )
     .then( (result) => {
         console.log( result );
