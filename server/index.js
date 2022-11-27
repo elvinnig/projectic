@@ -33,7 +33,7 @@ server.use('/api/v1/badges', BadgeRouter);
 server.use('/api/v1/users', UserRouter);
 server.use('/api/v1/filetypes', FileTypeRouter);
 server.use('/api/v1/files', FileRouter);
-server.use('api/v1/projects/', ProjectRouter);
+server.use('/api/v1/projects', ProjectRouter);
 
 //*Server
 server.listen(process.env.PORT, () => {
