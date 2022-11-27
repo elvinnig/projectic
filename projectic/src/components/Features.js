@@ -4,7 +4,7 @@ import image3 from '../assets/homepage_images/workflow.png';
 
 const Features = () => {
     return (
-    <div className='container marketing'>
+    <div className='container marketing' id='features'>
         <hr className='featurette-divider'/>
         <div className='row featurette'>
             <div className='col-md-7'>

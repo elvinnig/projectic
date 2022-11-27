@@ -2,7 +2,7 @@ import landingLogo from '../assets/logo/landing-page.png';
 
 const LandingPage = () => {
     return (
-        <section>
+        <section id='landing'>
             <div className='px-4 py-5 my-5 text-center'>
                 <img className='d-block mx-auto mb-4' src={landingLogo} alt='landing page logo' width='270'/>
                 <h1 className='display-5 fw-bold'>

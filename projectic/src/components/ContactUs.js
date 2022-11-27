@@ -4,7 +4,7 @@ import location from '../assets/homepage_images/location-pin.png';
 
 const ContactUs = () => {
     return (
-        <div className='container'>
+        <div className='container' id='contact'>
             <section className='mb-4'>
 
                 {/* Header */}
