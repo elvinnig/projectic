@@ -12,9 +12,9 @@ router.post('/', ( request, response ) => {
     });
 });
 
-//? GET all badges
-router.get('/', (request, response) => {
-    Badge.find( { } )
+//? GET all badges by userID
+router.get('/:userID', (request, response) => {
+    Badge.find( {userID: request.params.userID } )
     .then( (result) => {
         console.log( result );
         if( typeof result === 'object' ){
@@ -22,11 +22,10 @@ router.get('/', (request, response) => {
         }
     });
 });
-
 //TODO: GET badges/:badgeId
 router.get('/:badgeId', (request, response) => {
     Badge.findOne(
-        { _id: request.params.badgesId }
+        { _id: request.params.badgeId }
         )
     .then( (result) => {
         console.log( result );
