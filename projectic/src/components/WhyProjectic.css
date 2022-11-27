@@ -1,0 +1,5 @@
+/* custom css for WhyProjectic page */
+.carousel-image {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
