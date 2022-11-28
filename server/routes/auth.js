@@ -33,7 +33,7 @@ router.post('/register', async (request, response) => {
           from: process.env.EMAIL,
           to: request.body.email,
           subject: 'User Account Set up',
-          html: `<h1 style='color:#99c1de;'>Hello! ${greet}</h1><p>Your email: <i>${request.body.email}</i></p> <br /><p><b>Greeting from Projectic</b>,<br/> You have successfully created your account, please be sure to change your password before using the application. <br/> Truly yours <i>Admin</i> </p>`
+          html: `<div style='justify-content:center; text-align:center;'><div style='border:1px solid black; border-radius:20px; width:500px;'><div style='margin:20px;'><img src='https://res.cloudinary.com/dfa1bz6nk/image/upload/v1669620283/cghuu7hfcugpwb7rxm94.png' width="150px" alt='Image'/><h1 style='color:#7895B2;'>Hello! ${greet}</h1><p>Your email: <i>${request.body.email}</i></p> <br /><p><b>Greeting from Projectic,</b> <br/> You have successfully created your account, please be sure to change your password before using the application. <br/> Truly yours <i>Admin</i> </p></div></div></div>`
         },
         function (error, info) {
           if (error) {
