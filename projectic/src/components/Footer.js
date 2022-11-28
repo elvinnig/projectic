@@ -2,8 +2,8 @@ import footer from '../assets/logo/footer-logo.png'
 
 const Footer = () => {
     return (
-        <div className="container">
-            <footer className="d-flex flex-wrap justify-content-between align-items-center my-2 border-top">
+        <div className="container border-top">
+            <footer className="d-flex flex-wrap justify-content-between align-items-center my-3  ">
                 <p className="col-md-4 mb-0 text-muted">&copy; 2022 Projectic</p>
                 <a href="/" className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <img alt='footer logo' src={footer} height='50'/>

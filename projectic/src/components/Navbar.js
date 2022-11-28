@@ -1,8 +1,31 @@
 import nav_logo from '../assets/logo/nav-logo.png';
 import { useNavigate } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { fetchUser } from '../redux/slices/userSlice';
 
 const Navbar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    //* Check if there is a projectic stored in localstorage
+    if (localStorage.getItem('projectic')) {
+      // * if true find that user and get information
+      axios
+        .get(
+          `http://localhost:8000/api/v1/users/${localStorage.getItem(
+            'projectic'
+          )}`
+        )
+        .then((user) => {
+          dispatch(fetchUser({ user: { ...user.data } }));
+          setCurrentUser({ ...user.data });
+        });
+    }
+  }, []);
   return (
     <header className='p-3'>
       <div className='container'>
@@ -35,14 +58,77 @@ const Navbar = () => {
             </li>
           </ul>
           {/* Login Navigation */}
-          <div className='text-end'>
-            <button type='button' className='btn btn-outline-primary me-2' onClick={() => {navigate('/users/log_in')}}>
-              Login
-            </button>
-            <button type='button' className='btn btn-primary me-2'  onClick={() => {navigate('/users/sign_up')}}>
-              Register
-            </button>
-          </div>
+          {Object.keys(currentUser).length > 0 ? (
+            <div className='dropdown text-end'>
+              <a
+                href='#'
+                className='d-block link-dark text-decoration-none dropdown-toggle'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+              >
+                <img
+                  src={currentUser.profilePicture}
+                  alt=''
+                  width='32'
+                  height='32'
+                  className='rounded-circle'
+                />
+              </a>
+              <ul className='dropdown-menu text-small'>
+                <li>
+                  <a className='dropdown-item' href='#'>
+                    My Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a className='dropdown-item' href='#'>
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a className='dropdown-item' href='#'>
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <hr className='dropdown-divider' />
+                </li>
+                <li>
+                  <button
+                    className='dropdown-item'
+                    onClick={() => {
+                      localStorage.removeItem('projectic');
+                      setCurrentUser({});
+                      navigate('/');
+                    }}
+                  >
+                    Sign out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className='text-end'>
+              <button
+                type='button'
+                className='btn btn-outline-primary me-2'
+                onClick={() => {
+                  navigate('/users/log_in');
+                }}
+              >
+                Login
+              </button>
+              <button
+                type='button'
+                className='btn btn-primary me-2'
+                onClick={() => {
+                  navigate('/users/sign_up');
+                }}
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>
