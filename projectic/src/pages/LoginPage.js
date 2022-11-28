@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 //* Logo
-import logo from '../assets/logo/2.png'
+import logo from '../assets/logo/2.png';
+//* reCATPCHA
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function LoginPage() {
   //* two way binding
@@ -60,6 +62,10 @@ function LoginPage() {
               Forgot Password?
             </a>
           </div>
+          <ReCAPTCHA
+            sitekey='6LfFCdAiAAAAAMzlkMRfHBpUPXBfuJLfXVham1P5'
+            size='invisible'
+          />
           <div className='mb-3 d-flex justify-content-center'>
             <input
               type='submit'
