@@ -33,8 +33,7 @@ router.post('/register', async (request, response) => {
           from: process.env.EMAIL,
           to: request.body.email,
           subject: 'User Account Set up',
-          text: `Hello ${greet} Greetings from Projectic.Co, \n\n Your account has been created. \n Email: ${request.body.email}\n
-        Password: secret \n\n Kindly update your password immediately \n\n\n\n Truly yours\n Admin`,
+          html: `<h1 style='color:#99c1de;'>Hello! ${greet}</h1><p>Your email: <i>${request.body.email}</i></p> <br /><p><b>Greeting from Projectic</b>,<br/> You have successfully created your account, please be sure to change your password before using the application. <br/> Truly yours <i>Admin</i> </p>`
         },
         function (error, info) {
           if (error) {
