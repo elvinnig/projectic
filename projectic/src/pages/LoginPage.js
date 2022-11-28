@@ -44,7 +44,8 @@ function LoginPage() {
             .then((user) => {
               //console.log(user.data);
               dispatch(fetchUser({ user: { ...user.data } }));
-              setMessage('')
+              setMessage('');
+              localStorage.setItem('projectic', user.data._id);
               //TODO: navigate to dashboard
             });
         } else {

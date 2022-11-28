@@ -11,7 +11,7 @@ const LandingPage = () => {
                 <div className='col-lg-6 mx-auto'>
                     <p className='lead mb-4'>Projectic is a project management tool that lets you record project timelines, identify gaps in them, and use them to make informed decisions about project progress.</p>
                     <div className='d-grid gap-2 d-sm-flex justify-content-sm-center'>
-                        <button type='button' className='btn btn-primary btn-lg px-4'>Get Started</button>
+                        <a type='button' className='btn btn-primary btn-lg px-4' href='/users/log_in' >Get Started</a>
                     </div>
                 </div>
             </div>

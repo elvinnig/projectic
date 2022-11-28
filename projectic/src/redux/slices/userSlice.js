@@ -7,8 +7,6 @@ export const userSlice = createSlice({
 
   reducers: {
     fetchUser: (state, action) => {
-      //* when a user login make sure no user is stored in the state
-      //state = [];
       //* store the login user info to the state
       state = { ...action.payload.user };
       // console.log(state);
