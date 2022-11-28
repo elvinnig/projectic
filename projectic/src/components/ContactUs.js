@@ -61,7 +61,7 @@ const ContactUs = () => {
                                 {/* Grid Column */}
                                 <div className='col-md-6'>
                                     <div className='md-form mb-0'>
-                                        <label htmlFor='email' className=''>Your email {email}</label>
+                                        <label htmlFor='email' className=''>Your email</label>
                                         <input type='email' id='email' name='email' className='form-control'
                                         value={email}
                                         onChange={(e) => {setEmail(e.target.value);}}
@@ -100,11 +100,11 @@ const ContactUs = () => {
                             </li>
                             <li>
                                 <img alt='contact' src={contact} height='30'/>
-                                <p>+639567720385</p>
+                                <p>+63 (956) 772 0385</p>
                             </li>
                             <li>
                                 <img alt='email' src={emailicon} height='30'/>
-                                <p>support@projectic.com</p>
+                                <p>projecticuplift@gmail.com</p>
                             </li>
                         </ul>
                     </div>
