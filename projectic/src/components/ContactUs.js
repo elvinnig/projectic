@@ -27,7 +27,7 @@ const ContactUs = () => {
                                 {/* Grid Column */}
                                 <div className='col-md-6'>
                                     <div className='md-form mb-0'>
-                                        <label for='name' className=''>Your name</label>
+                                        <label htmlFor='name' className=''>Your name</label>
                                         <input type='text' id='name' name='name' className='form-control'/>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@ const ContactUs = () => {
                                 {/* Grid Column */}
                                 <div className='col-md-6'>
                                     <div className='md-form mb-0'>
-                                        <label for='email' className=''>Your email</label>
+                                        <label htmlFor='email' className=''>Your email</label>
                                         <input type='text' id='email' name='email' className='form-control'/>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@ const ContactUs = () => {
                                 {/* Grid Column */}
                                 <div className='col-md-12'>
                                     <div className='md-form'>
-                                        <label for='message'>Your message</label>
+                                        <label htmlFor='message'>Your message</label>
                                         <textarea type='text' id='message' name='message' rows='4' className='form-control md-textarea'></textarea>
                                     </div>
                                 </div>
