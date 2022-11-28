@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 //* Logo
-import logo from '../assets/logo/2.png'
+import logo from '../assets/logo/2.png';
+//* reCATPCHA
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function LoginPage() {
   //* two way binding
@@ -13,12 +15,12 @@ function LoginPage() {
     //TODO : submit the form
   };
   return (
-    <div className='vh-100 w-100 d-flex justify-content-center align-items-center'>
-      <div className='w-50 p-5 rounded-3 d-flex flex-column align-items-center'>
+    <div className='vh-100 d-flex justify-content-center align-items-center'>
+      <div className='p-5 rounded-3 d-flex flex-column align-items-center'>
         <img alt='logo_here' src={logo} className='rounded-circle w-25' />
         <small className='mb-3'>Sign in to continue</small>
         <form
-          className='w-50'
+          className=''
           onSubmit={(e) => {
             onSubmitForm(e);
           }}
@@ -60,6 +62,10 @@ function LoginPage() {
               Forgot Password?
             </a>
           </div>
+          <ReCAPTCHA
+            sitekey='6LfFCdAiAAAAAMzlkMRfHBpUPXBfuJLfXVham1P5'
+            size='invisible'
+          />
           <div className='mb-3 d-flex justify-content-center'>
             <input
               type='submit'
