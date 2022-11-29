@@ -1,4 +1,4 @@
-import nav_logo from '../assets/logo/nav-logo.png';
+import nav_logo from '../assets/logo/projectic-title-dark.png';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
