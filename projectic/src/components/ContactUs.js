@@ -2,6 +2,9 @@ import emailicon from '../assets/homepage_images/email.png';
 import contact from '../assets/homepage_images/contact.png';
 import location from '../assets/homepage_images/location-pin.png';
 
+//* react-bootstrap-icon
+import * as Icon from 'react-bootstrap-icons';
+//*Axios
 import axios from 'axios';
 //*Hook
 import {useState} from 'react';
@@ -9,20 +12,29 @@ const ContactUs = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [success, setSuccessMessage] = useState('');
 
+    const hideSuccessMessage = (timeOut) => {
+        setTimeout(() => {
+            setSuccessMessage('')
+        }, timeOut);
+    };
 
     const onSubmitForm = (e) => {
         e.preventDefault();
-        //TODO : check if the user is in the database
+        
         axios
           .post('http://localhost:8000/api/v1/contactus/message', {
             name: name,
             email: email,
             message: message,
           })
-          setMessage('')
-          setName('')
-          setEmail('')
+          setMessage('');
+          setName('');
+          setEmail('');
+          setSuccessMessage('Your message has been sent!');
+          hideSuccessMessage(1500);
+
       };
     return (
         <div className='container' id='contact'>
@@ -85,7 +97,11 @@ const ContactUs = () => {
                                 </div>
                             </div>
                         <div className='text-center text-md-left'>
-                            <button type='submit 'className='btn btn-primary mt-2' >Send</button>
+                            {success ? (
+                          <small className='text-success'>{success}</small>
+                             ) : null}
+                             <br />
+                            <button type='submit 'className='btn btn-primary mt-2' ><Icon.SendFill />   Send Message </button>
                         </div>
                         </form>
                         <div className='status'></div>
@@ -103,7 +119,7 @@ const ContactUs = () => {
                                 <p>+63 (956) 772 0385</p>
                             </li>
                             <li>
-                                <img alt='email' src={emailicon} height='30'/>
+                                <img alt='email' src={email} height='30'/>
                                 <p>projecticuplift@gmail.com</p>
                             </li>
                         </ul>
