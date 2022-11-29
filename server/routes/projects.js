@@ -1,13 +1,34 @@
 const express = require('express');
 const router = express.Router();
-
+const mongoose = require('mongoose');
 //*Models
 const Project = require('../models/Project');
+const File = require('../models/File');
 
 //TODO: POST projects
 router.post('/', ( request, response ) => {
-    let newProject = new Project( request.body );
+    let newProject = new Project( {
+        authorID: request.body.authorID,
+        badgeID: request.body.badgeID,
+        name: request.body.name,
+        description: request.body.description,
+        thumbnail: request.body.thumbnail,    
+    } );
     newProject.save().then( result => {
+        console.log(result._id);
+        if( request.body.hasOwnProperty('files') ){
+        [...request.body.files].map(file => {
+            let newFile = new File({
+                projectId: result._id,
+                fileTypeId: mongoose.Types.ObjectId(file.fileTypeId),
+                fileLink: file.fileLink
+            });
+            newFile.save().then(result => {
+              
+               return console.log(result)
+            })
+        })
+       } 
         response.status(200).send({ status: 'You added new project' });
     });
 });
