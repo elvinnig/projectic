@@ -7,6 +7,8 @@ import RegistrationPage from './pages/RegistrationPage';
 import Homepage from './pages/Homepage';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
+import UserDashboard from './pages/UserDashboard';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         {/* [x] Temporary Route */}
         <Route path='/add' element={<AddProjectPage />} />
         <Route path='/addFile' element={<AddFilePage />} />
+          <Route path='/user/dashboard' element={<UserDashboard />} />
       </Routes>
     </div>
   );
