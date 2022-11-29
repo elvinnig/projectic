@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import Homepage from './pages/Homepage';
 import AddProjectPage from './pages/AddProjectPage';
+import AddFilePage from './pages/AddFilePage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Homepage />} />
         {/* [x] Temporary Route */}
         <Route path='/add' element={<AddProjectPage />} />
+        <Route path='/addFile' element={<AddFilePage />} />
       </Routes>
     </div>
   );
