@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router'
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import Homepage from './pages/Homepage';
+import ViewProject from './pages/ViewProject';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/users/log_in' element={<LoginPage />} />
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
+        <Route path='/project' element={<ViewProject />} />
       </Routes>
     </div>
   );
