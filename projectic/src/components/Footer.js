@@ -1,4 +1,4 @@
-import footer from '../assets/logo/footer-logo.png'
+import footer from '../assets/logo/projectic-logo-small-black.png'
 
 const Footer = () => {
     return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 //* Logo
-import logo from '../assets/logo/2.png';
+import logo from '../assets/logo/login-logo.png';
 //* reCATPCHA
 import ReCAPTCHA from 'react-google-recaptcha';
 //*Redux

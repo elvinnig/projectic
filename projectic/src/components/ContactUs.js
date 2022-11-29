@@ -103,7 +103,7 @@ const ContactUs = () => {
                                 <p>+63 (956) 772 0385</p>
                             </li>
                             <li>
-                                <img alt='email' src={emailicon} height='30'/>
+                                <img alt='email' src={email} height='30'/>
                                 <p>projecticuplift@gmail.com</p>
                             </li>
                         </ul>

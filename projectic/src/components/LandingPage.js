@@ -1,4 +1,4 @@
-import landingLogo from '../assets/logo/landing-page.png';
+import landingLogo from '../assets/logo/projectic-logo-large-dark.png';
 
 const LandingPage = () => {
     return (
