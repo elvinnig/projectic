@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 //* Logo
-import logo from '../assets/logo/projectic-title-light.png';
-import icon from '../assets/logo/2.png';
+import logo from '../assets/logo/projectic-title-light1.png';
+import icon from '../assets/logo/projectic-logo-large-dark.png';
 //*CSS
 import './css/registration.css';
 //*Redux

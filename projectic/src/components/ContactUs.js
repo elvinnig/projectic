@@ -72,7 +72,7 @@ const ContactUs = () => {
                             </li>
                             <li>
                                 <img alt='email' src={email} height='30'/>
-                                <p>support@projectic.com</p>
+                                <p>projecticuplift@gmail.com</p>
                             </li>
                         </ul>
                     </div>
