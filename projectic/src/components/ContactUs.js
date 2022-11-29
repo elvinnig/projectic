@@ -1,29 +1,8 @@
-import emailicon from '../assets/homepage_images/email.png';
+import email from '../assets/homepage_images/email.png';
 import contact from '../assets/homepage_images/contact.png';
 import location from '../assets/homepage_images/location-pin.png';
 
-import axios from 'axios';
-//*Hook
-import {useState} from 'react';
 const ContactUs = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-
-
-    const onSubmitForm = (e) => {
-        e.preventDefault();
-        //TODO : check if the user is in the database
-        axios
-          .post('http://localhost:8000/api/v1/contactus/message', {
-            name: name,
-            email: email,
-            message: message,
-          })
-          setMessage('')
-          setName('')
-          setEmail('')
-      };
     return (
         <div className='container' id='contact'>
             <section className='mb-4'>
@@ -40,8 +19,7 @@ const ContactUs = () => {
 
                     {/* Grid Column */}
                     <div className='col-md-9 mb-md-0 mb-5'>
-                        <form id='contact-form' name='contact-form' 
-                        onSubmit={(e) => {onSubmitForm(e); }}>
+                        <form id='contact-form' name='contact-form'>
                             
                             {/* Grid Row */}
                             <div className='row'>
@@ -50,11 +28,7 @@ const ContactUs = () => {
                                 <div className='col-md-6'>
                                     <div className='md-form mb-0'>
                                         <label htmlFor='name' className=''>Your name</label>
-                                        <input type='text' id='name' name='name' className='form-control'  
-                                        value={name}
-                                        onChange={(e) => {setName(e.target.value);}}
-                                        required
-                                        />
+                                        <input type='text' id='name' name='name' className='form-control'/>
                                     </div>
                                 </div>
 
@@ -62,11 +36,7 @@ const ContactUs = () => {
                                 <div className='col-md-6'>
                                     <div className='md-form mb-0'>
                                         <label htmlFor='email' className=''>Your email</label>
-                                        <input type='email' id='email' name='email' className='form-control'
-                                        value={email}
-                                        onChange={(e) => {setEmail(e.target.value);}}
-                                        required
-                                        />
+                                        <input type='text' id='email' name='email' className='form-control'/>
                                     </div>
                                 </div>
                             </div>
@@ -78,16 +48,14 @@ const ContactUs = () => {
                                 <div className='col-md-12'>
                                     <div className='md-form'>
                                         <label htmlFor='message'>Your message</label>
-                                        <textarea type='text' id='message' name='message' rows='4' className='form-control md-textarea'
-                                        value={message}
-                                        onChange={(e) => {setMessage(e.target.value);}} required></textarea>
+                                        <textarea type='text' id='message' name='message' rows='4' className='form-control md-textarea'></textarea>
                                     </div>
                                 </div>
                             </div>
-                        <div className='text-center text-md-left'>
-                            <button type='submit 'className='btn btn-primary mt-2' >Send</button>
-                        </div>
                         </form>
+                        <div className='text-center text-md-left'>
+                            <a className='btn btn-primary mt-2' href='#?'>Send</a>
+                        </div>
                         <div className='status'></div>
                     </div>
                     
@@ -100,7 +68,7 @@ const ContactUs = () => {
                             </li>
                             <li>
                                 <img alt='contact' src={contact} height='30'/>
-                                <p>+63 (956) 772 0385</p>
+                                <p>+639567720385</p>
                             </li>
                             <li>
                                 <img alt='email' src={email} height='30'/>

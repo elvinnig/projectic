@@ -4,6 +4,8 @@ export const projectSlice = createSlice({
   name: 'project',
   initialState: [],
   reducers: {
+    //TODO
+    //! only admin can manipulate file type entity
   },
 });
 
