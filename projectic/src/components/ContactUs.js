@@ -33,7 +33,7 @@ const ContactUs = () => {
           setName('');
           setEmail('');
           setSuccessMessage('Your message has been sent!');
-          hideSuccessMessage(1400);
+          hideSuccessMessage(1500);
 
       };
     return (
@@ -96,10 +96,11 @@ const ContactUs = () => {
                                     </div>
                                 </div>
                             </div>
+                        <div className='text-center text-md-left'>
                             {success ? (
                           <small className='text-success'>{success}</small>
                              ) : null}
-                        <div className='text-center text-md-left'>
+                             <br />
                             <button type='submit 'className='btn btn-primary mt-2' ><Icon.SendFill />   Send Message </button>
                         </div>
                         </form>
