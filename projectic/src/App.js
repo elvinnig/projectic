@@ -9,9 +9,6 @@ import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
 
-import AddProjectPage from './pages/AddProjectPage';
-import AddFilePage from './pages/AddFilePage';
-import UserDashboard from './pages/UserDashboard';
 
 
 function App() {
@@ -23,7 +20,7 @@ function App() {
         <Route path='/' element={<Homepage />} />
 
         {/* [x] Temporary Route */}
-        <Route path='/add' element={<AddProjectPage />} />
+        <Route path='/user/add_project' element={<AddProjectPage />} />
         <Route path='/addFile' element={<AddFilePage />} />
         <Route path='/user/dashboard' element={<UserDashboard />} />
 

@@ -34,8 +34,19 @@ router.post('/', ( request, response ) => {
 });
 
 //TODO: GET all data of the project
-router.get('/:projectID', (request, response) => {
-    Project.find( {_id: request.params.projectID } )
+// router.get('/:projectID', (request, response) => {
+//     Project.find( {_id: request.params.projectID } )
+//     .then( (result) => {
+//         console.log( result );
+//         if( typeof result === 'object' ){
+//             response.status(202).send( result );
+//         }
+//     });
+// });
+
+//TODO: GET all project by author id
+router.get('/:authorID', (request, response) => {
+    Project.find( {authorID: request.params.authorID } )
     .then( (result) => {
         console.log( result );
         if( typeof result === 'object' ){
