@@ -2,6 +2,9 @@ import emailicon from '../assets/homepage_images/email.png';
 import contact from '../assets/homepage_images/contact.png';
 import location from '../assets/homepage_images/location-pin.png';
 
+//* react-bootstrap-icon
+import * as Icon from 'react-bootstrap-icons';
+//*Axios
 import axios from 'axios';
 //*Hook
 import {useState} from 'react';
@@ -97,7 +100,7 @@ const ContactUs = () => {
                           <small className='text-success'>{success}</small>
                              ) : null}
                         <div className='text-center text-md-left'>
-                            <button type='submit 'className='btn btn-primary mt-2' >Send</button>
+                            <button type='submit 'className='btn btn-primary mt-2' ><Icon.SendFill />   Send Message </button>
                         </div>
                         </form>
                         <div className='status'></div>
