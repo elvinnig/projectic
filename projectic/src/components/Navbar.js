@@ -76,7 +76,7 @@ const Navbar = () => {
               </a>
               <ul className='dropdown-menu text-small'>
                 <li>
-                  <a className='dropdown-item' href='/user/dashboard'>
+                  <a className='dropdown-item' href='/users/dashboard'>
                     My Dashboard
                   </a>
                 </li>

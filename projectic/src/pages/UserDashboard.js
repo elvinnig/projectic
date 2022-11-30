@@ -8,10 +8,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchProject } from '../redux/slices/projectSlice';
 
-const UserDashboard = () => {
+const UserDashboard = ({ setSelectedProject }) => {
   const [allProject, setAllProject] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [newBadge, setNewBadge] = useState('');
+  const [allBadges, setAllBadges] = useState([]);
+  const [selectedBadge, setSelectedBadge] = useState('');
 
   useEffect(() => {
     axios
@@ -23,8 +26,38 @@ const UserDashboard = () => {
       .then((response) => {
         dispatch(fetchProject({ project: response.data }));
         setAllProject(response.data);
+        getUserBadges();
       });
   }, []);
+
+  const getUserBadges = () => {
+    axios
+      .get(
+        `http://localhost:8000/api/v1/badges/${localStorage.getItem(
+          'projectic'
+        )}`
+      )
+      .then((response) => {
+        // [x]
+        console.log(response.data);
+        setAllBadges([...response.data]);
+      });
+  };
+
+  const onSubmitBadge = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:8000/api/v1/badges', {
+        userID: localStorage.getItem('projectic'),
+        name: newBadge,
+      })
+      .then((response) => {
+        // [x]
+        console.log(response);
+        setNewBadge('');
+        getUserBadges();
+      });
+  };
   return (
     <div>
       <Navbar />
@@ -33,39 +66,77 @@ const UserDashboard = () => {
           {/* <hr className="border border-black border-2"/> */}
           {/* Badges Row */}
           <div className='col-sm col-md-3'>
-            <div className='input-group d-flex justify-content-center m-3'>
-              {/* Search bar container for badges */}
-              <div className='form-outline'>
-                <input
-                  type='search'
-                  id='badgeSearch'
-                  className='form-control'
-                  placeholder='Search badges...'
-                />
-              </div>
-              <button type='button' className='btn btn-primary'>
-                <i className='bi bi-search'></i>
-              </button>
-            </div>
-
             {/* Add Badge Button */}
-            <div className='d-flex justify-content-center m-3'>
-              <button type='button' className='btn btn-labeled btn-primary'>
-                <span className='btn-label'>
-                  <i className='bi bi-plus-circle me-1'></i>
-                </span>
-                Add New Badge
-              </button>
+            <div className='d-flex flex-column m-3'>
+              <input
+                type='search'
+                id='badgeSearch'
+                className='form-control'
+                placeholder='Search badges...'
+              />
+              <div className='dropdown text-end'>
+                <a
+                  href='#'
+                  className='d-block link-dark text-decoration-none dropdown-toggle'
+                  data-bs-toggle='dropdown'
+                  aria-expanded='false'
+                >
+                  <button type='button' className='btn btn-labeled btn-link'>
+                    <span className='btn-label'>
+                      {/* <i className='bi bi-plus-circle me-1'></i> */}
+                    </span>
+                    New Badge
+                  </button>
+                </a>
+                <ul className='dropdown-menu text-small'>
+                  <li className='p-2'>
+                    <form
+                      onSubmit={(e) => {
+                        onSubmitBadge(e);
+                      }}
+                    >
+                      <div className='mb-3'>
+                        <input
+                          type='text'
+                          className='form-control'
+                          id='username'
+                          placeholder='Badge Name'
+                          required
+                          value={newBadge}
+                          onChange={(e) => {
+                            setNewBadge(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <input
+                        type='submit'
+                        value='Add Badge'
+                        className='btn btn-primary'
+                      />
+                    </form>
+                  </li>
+                </ul>
+              </div>
             </div>
-            {/* <hr className="border border-black border-2"/> */}
+            <hr className='border border-black border-2' />
 
             {/* Badge Container */}
-            <div className='container-fluid d-flex justify-content-center'>
-              <ul className='list-unstyled'>
+            <div className='d-flex justify-content-center w-100'>
+              <ul className='list-unstyled w-100'>
                 {/* Maps through the badges available in Projects card */}
-                {/*  {testCard.map((individualBadge) => {
-                  return <BadgeCards title={individualBadge.badge} />;
-                })} */}
+                {[...allBadges].map((badge, index) => {
+                  return (
+                    <li
+                    className='p-2 border-bottom'
+                      key={index}
+                      onClick={() => {
+                        setSelectedBadge(badge._id);
+                      }}
+                    >
+                      {badge.name}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -112,6 +183,8 @@ const UserDashboard = () => {
                       key={project.name + index}
                       image={project.thumbnail}
                       title={project.name}
+                      id={project._id}
+                      setSelectedProject={setSelectedProject}
                       //   badge={project.badge}
                     />
                   );

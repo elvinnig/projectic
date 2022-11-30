@@ -47,6 +47,7 @@ function LoginPage() {
               setMessage('');
               localStorage.setItem('projectic', user.data._id);
               //TODO: navigate to dashboard
+              navigate('/users/dashboard')
             });
         } else {
           setMessage('Invalid Password!');

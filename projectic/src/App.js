@@ -9,24 +9,47 @@ import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
-
-
+//*
+import { useState } from 'react';
 
 function App() {
+  const [selectedProject, setSelectedProject] = useState('');
   return (
     <div className=''>
       <Routes>
         <Route path='/users/log_in' element={<LoginPage />} />
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
-        <Route path='/project' element={<ViewProject />} />
+        <Route
+          path='/users/view_project'
+          element={<ViewProject projectID={selectedProject} />}
+        />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
         <Route path='/addFile' element={<AddFilePage />} />
-        <Route path='/user/dashboard' element={<UserDashboard />} />
+        <Route
+          path='/users/dashboard'
+          element={<UserDashboard setSelectedProject={setSelectedProject} />}
+        />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+/* 
+TODO
+* Add badges
+* Add Badges when creating project
+! search project
+! search badge
+* display badge in userdashboard
+! update project
+! delete project
+! delete files
+! update files
+! filter using badge
+! display badge in project card
+
+*/

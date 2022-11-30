@@ -32,14 +32,17 @@ class UploadWidget extends Component {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info);
           if (this.props.folderName === 'thumbnail') {
-          document
-            .getElementById('thumbnail')
-            .setAttribute('src', result.info.secure_url);
-            this.props.thumbnailSet(result.info.secure_url)
-           } 
-           //else {
-          // this.props.resultLink(result.info.secure_url);
-          //  }
+            document
+              .getElementById('thumbnail')
+              .setAttribute('src', result.info.secure_url);
+            this.props.thumbnailSet(result.info.secure_url);
+          } else {
+            this.props.setFiles([
+              ...this.props.getFiles,
+              { ...result.info, fileType: this.props.fileType },
+            ]);
+            // this.props.setFileType('');
+          }
         }
       }
     );
