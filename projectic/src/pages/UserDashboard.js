@@ -105,7 +105,7 @@ const UserDashboard = () => {
                         <input
                           type='text'
                           className='form-control'
-                          id='username'
+                          id='badgename'
                           placeholder='Badge Name'
                           required
                           value={newBadge}
