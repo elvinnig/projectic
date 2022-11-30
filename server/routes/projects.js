@@ -103,7 +103,7 @@ router.patch('/:projectID', (request, response) => {
 router.delete('/:projectID', (request, response) => {
   Project.deleteOne({ _id: request.params.projectID }).then((result) => {
     if (result.deletedCount === 1) {
-      response.status(200).send({ status: 'Project removed' });
+      response.status(200).send({ status: 'Project_removed' });
     } else {
       response.status(404).send({ status: 'This project is already deleted' });
       return;
