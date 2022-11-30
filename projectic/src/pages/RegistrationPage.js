@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 //* Logo
-import logo from '../assets/logo/projectic-title-light1.png';
+import logo from '../assets/logo/projectic-title-dark.png';
 import icon from '../assets/logo/projectic-logo-large-dark.png';
 //*CSS
 import './css/registration.css';
@@ -76,7 +76,7 @@ function RegistrationPage() {
   };
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
-      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4'>
+      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 sign-up'>
         <div className='reg-col-1'>
           <img alt='logo_here' src={logo} className='w-50 mb-3' />
           <h6 className='mb-3'>Create you Projectic Account</h6>
@@ -216,7 +216,7 @@ function RegistrationPage() {
                 Show password
               </label>
             </div>
-            <div className='mb-3 d-flex justify-content-end'>
+            <div className='m-3 d-flex justify-content-center'>
               <input
                 type='submit'
                 className='btn btn-primary px-4'

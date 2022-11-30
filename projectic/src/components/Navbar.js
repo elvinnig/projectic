@@ -29,7 +29,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <header className='p-3 bg-secondary bg-gradient'>
+    <header className='p-3 navigation'>
       <div className='container'>
           {/* Login Navigation */}
           {Object.keys(currentUser).length > 0 ? (
@@ -44,7 +44,7 @@ const Navbar = () => {
               />
             </a>
             <div className='d-flex align-items-center'>
-              <span>Welcome, {currentUser.firstname}&nbsp;</span>
+              <span className='fs-6 fw-bold'>Welcome, {currentUser.firstname}&nbsp;</span>
               <div className='dropdown text-end'>
                 <a
                   href='#'
@@ -60,7 +60,7 @@ const Navbar = () => {
                     className='rounded-circle'
                   />
                 </a>
-                <ul className='dropdown-menu text-small'>
+                <ul className='dropdown-menu text-small dropdown-color'>
                   <li className='dropdown-item'>
                     <h5>{currentUser.username}</h5>
                   </li>
@@ -113,17 +113,22 @@ const Navbar = () => {
             {/* Middle Navigation */}
             <ul className='nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
               <li>
-                <a href='#landing' className='nav-link px-3 link-dark lead'>
+                <a href='#landing' className='nav-link px-3 lead header-link'>
                   Why Projectic
                 </a>
               </li>
               <li>
-                <a href='#features' className='nav-link px-3 link-dark lead'>
+                <a href='#features' className='nav-link px-3 lead header-link'>
                   Features
                 </a>
               </li>
               <li>
-                <a href='#contact' className='nav-link px-3 link-dark lead'>
+                <a href='#about' className='nav-link px-3 lead header-link'>
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href='#contact' className='nav-link px-3 lead header-link'>
                   Contact Us
                 </a>
               </li>
@@ -131,7 +136,7 @@ const Navbar = () => {
             <div className='text-end'>
               <button
                 type='button'
-                className='btn btn-outline-primary me-2'
+                className='btn btn-outline-dark me-2'
                 onClick={() => {
                   navigate('/users/log_in');
                 }}
@@ -140,7 +145,7 @@ const Navbar = () => {
               </button>
               <button
                 type='button'
-                className='btn btn-primary me-2'
+                className='btn btn-dark me-2'
                 onClick={() => {
                   navigate('/users/sign_up');
                 }}

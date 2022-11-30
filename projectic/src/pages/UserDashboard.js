@@ -136,7 +136,7 @@ const UserDashboard = () => {
                         setSelectedBadge(badge._id);
                       }}
                     >
-                      {badge.name}
+                      <span className='badge fs-6'>{badge.name}</span>
                     </li>
                   );
                 })}

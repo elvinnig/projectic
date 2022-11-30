@@ -57,6 +57,17 @@ const Settings = () => {
         getUserBadges();
         });
     };
+// !Surrender nako
+    // const badgeDelete = (e) => {
+    //     axios
+    //         .delete(`http://localhost:8000/api/v1/badges/${allBadges._id}`
+    //         )
+    //         .then((response) => {
+    //             if(response.status === 200) {
+    //                 getUserBadges();
+    //             }
+    //         }).catch(err => console.log(err))
+    // }
 
     return (
     <div>
@@ -122,19 +133,40 @@ const Settings = () => {
                 <table className='table table-bordered'>
                     <thead>
                         <tr className='text-center'>
-                            <th scope='col'>Badges</th>
-                            <th scope='col'>Action</th>
+                            <th scope='col' className='fs-5 fw-bold text-light'>Badges</th>
+                            <th scope='col' className='fs-5 fw-bold text-light'>Action</th>
                         </tr>
                     </thead>
                     {[...allBadges].map((badge, index) => {
                         return (
-                            <tbody>
-                                <tr>
-                                    <td>{badge.name}</td>
-                                    <td className='text-center'>
-                                        <a href="#" class="link-primary">delete</a>
+                            <tbody key={index}>
+                                <tr className='text-center'>
+                                    <td><span className='badge bg-dark fs-6'>{badge.name}</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger"><Icon.TrashFill/> Delete</button>
                                         &nbsp;&nbsp;
-                                        <a href="#" class="link-primary">update</a>
+                                        
+                                        {/* Modal Button */}
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><Icon.PencilSquare/> Update</button>
+                                        
+                                        {/* Modal */}
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content update-popup">
+                                              <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Badge</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <input type='text' size="50"></input>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary">Update</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                                         </td>
                                 </tr>
                             </tbody>
