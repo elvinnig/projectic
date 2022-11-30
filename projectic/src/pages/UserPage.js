@@ -10,13 +10,11 @@ const UserPage = () => {
   const [userLastName, setUserLastName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [username, setUsername] = useState('');
-console.log(username);
   const [profile, setProfile] = useState('');
-
   const [allUsername, setAllUsername] = useState('');
-  console.log(allUsername);
   const [error, setError] = useState('');
-  //*local storage
+
+  //TODO: getItem from local storage
   const inLocalStorage = localStorage.getItem('projectic');
   const hideSuccessMessage = (timeOut) => {
     setTimeout(() => {
@@ -24,6 +22,7 @@ console.log(username);
     }, timeOut);
 };
   useEffect(() => {
+    //TODO: Get user by id
     axios.get(`http://localhost:8000/api/v1/users/${inLocalStorage}`).then((result) => {
       console.log(result)
       
@@ -56,7 +55,7 @@ console.log(username);
 
     // eslint-disable-next-line
   }, [])
- 
+ //TODO: onsubmit handler
   const onSubmitUpdateProfile = (e) => {
     e.preventDefault();
     if (allUsername.includes(username)) {
@@ -64,6 +63,7 @@ console.log(username);
       hideSuccessMessage(1500)
       return;
     }
+    //TODO: Update user by id
     axios
       .patch(`http://localhost:8000/api/v1/users/${inLocalStorage}`, {
         firstname: userFirstName,
@@ -89,9 +89,7 @@ console.log(username);
             <div className='mb-3'>
               <div className='row'>
               <div class="mb-3">
-                 
                  <h5 className='mb-3'>Profile Update</h5>
-                
                     <label htmlFor='picture' className='form-label'>
                     Profile Picture:
                     </label>
@@ -99,6 +97,7 @@ console.log(username);
                      <img class="rounded float-start" alt='image_here'   //picture image
                         src={profile} id='thumbnail' className='w-50 mb-3' />
                     <div className='mb-4 d-flex justify-content-flex-start'>
+                  //* upload widget
                    <UploadWidget
                   buttonText='Update Your Profile'
                   folderName='thumbnail'
@@ -168,9 +167,7 @@ console.log(username);
                   setUsername(e.target.value);
                 }}
               />
-             {error ? (
-                          <small className='text-danger'>{error}</small>
-                             ) : null}
+            {error ? ( <small className='text-danger'>{error}</small>) : null}
             </div>
             <div className='mb-3'>
               <div className='row'>
@@ -181,16 +178,11 @@ console.log(username);
                 className='btn btn-primary px-4'
                 value='UPDATE'
               />
-              
              </div>
             </div>
             </div>
-           
           </form>
-          
         </div>
-     
-      
         </div>
         </>
     
