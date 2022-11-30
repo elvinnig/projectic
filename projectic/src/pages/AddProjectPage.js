@@ -53,8 +53,8 @@ const AddProjectPage = () => {
   return (
     <>
       <Navbar />
-      <div className='container border my-2'>
-        <h3 className='mb-3'>New Project</h3>
+      <div className='container border border-2 rounded my-2 p-5'>
+        <h3 className='mb-3 '>New Project</h3>
         <form
           onSubmit={(e) => {
             onSubmitProject(e);

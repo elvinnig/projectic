@@ -6,15 +6,14 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import moment from 'moment';
 
-const ViewProject = ({ projectID }) => {
+const ViewProject = () => {
   const navigate = useNavigate();
   const [projectInfo, setProjectInfo] = useState({});
   const project = useSelector((state) => state.project);
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    console.log({ projectID: projectID });
-    if (projectID === '') {
+    if (!('current_project' in localStorage)) {
       // TODO navigate to dashboard
       navigate('/users/dashboard');
     } else {
@@ -28,11 +27,11 @@ const ViewProject = ({ projectID }) => {
           console.log(response.data);
           setProjectInfo(
             response.data.filter((project) => {
-              return project._id === projectID;
+              return project._id === localStorage.getItem('current_project');
             })
           );
           axios
-            .get(`http://localhost:8000/api/v1/files/${projectID}`)
+            .get(`http://localhost:8000/api/v1/files/${localStorage.getItem('current_project')}`)
             .then((result) => {
               setFiles(result.data);
             });
@@ -50,6 +49,7 @@ const ViewProject = ({ projectID }) => {
               type='button'
               className='btn btn-labeled btn-primary my-2'
               onClick={() => {
+                localStorage.removeItem('current_project');
                 navigate('/users/dashboard');
               }}
             >
@@ -98,6 +98,8 @@ const ViewProject = ({ projectID }) => {
                   src={projectInfo[0].thumbnail}
                   className='card-img-top'
                   alt='...'
+                  width='250px'
+                  height='150px'
                 />
                 <div className='row'>
                   <div className='card-body col-4'>

@@ -1,23 +1,29 @@
 import { useNavigate } from 'react-router';
 
 // To render Cards in UserDashboard
-const ProjectCards = ({ image, title, badge, setSelectedProject, id }) => {
+const ProjectCards = ({ image, title, badge, id }) => {
   const navigate = useNavigate();
   return (
-    <div className='col w-25'>
-      <div className='card text-center'>
-        <img src={image} className='card-img-top' alt='...' width='100px' />
+    <div className='col' style={{ width: '300px' }}>
+      <div className='card text-center p-2'>
+        <img
+          src={image}
+          className='card-img-top'
+          alt='...'
+          width='250px'
+          height='150px'
+        />
         <div className='card-body'>
           <span className='badge bg-dark'>{badge}</span>
-          <h5 className='card-title'>{title}</h5>
+          <h6 className='card-title'>{title}</h6>
           <button
             className='btn btn-link'
             onClick={() => {
-              setSelectedProject(id);
+              localStorage.setItem('current_project', id);
               navigate('/users/view_project');
             }}
           >
-            View
+            View Project
           </button>
         </div>
       </div>

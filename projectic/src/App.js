@@ -9,28 +9,19 @@ import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
-//*
-import { useState } from 'react';
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState('');
   return (
     <div className=''>
       <Routes>
         <Route path='/users/log_in' element={<LoginPage />} />
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
-        <Route
-          path='/users/view_project'
-          element={<ViewProject projectID={selectedProject} />}
-        />
+        <Route path='/users/view_project' element={<ViewProject />} />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
         <Route path='/addFile' element={<AddFilePage />} />
-        <Route
-          path='/users/dashboard'
-          element={<UserDashboard setSelectedProject={setSelectedProject} />}
-        />
+        <Route path='/users/dashboard' element={<UserDashboard />} />
       </Routes>
     </div>
   );

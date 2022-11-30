@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchProject } from '../redux/slices/projectSlice';
 
-const UserDashboard = ({ setSelectedProject }) => {
+const UserDashboard = () => {
   const [allProject, setAllProject] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const UserDashboard = ({ setSelectedProject }) => {
   const [selectedBadge, setSelectedBadge] = useState('');
 
   useEffect(() => {
+    if (localStorage.getItem('current_project')) {
+      // localStorage.removeItem('current_project');
+    }
     axios
       .get(
         `http://localhost:8000/api/v1/projects/${localStorage.getItem(
@@ -127,7 +130,7 @@ const UserDashboard = ({ setSelectedProject }) => {
                 {[...allBadges].map((badge, index) => {
                   return (
                     <li
-                    className='p-2 border-bottom'
+                      className='p-2 border-bottom'
                       key={index}
                       onClick={() => {
                         setSelectedBadge(badge._id);
@@ -184,7 +187,6 @@ const UserDashboard = ({ setSelectedProject }) => {
                       image={project.thumbnail}
                       title={project.name}
                       id={project._id}
-                      setSelectedProject={setSelectedProject}
                       //   badge={project.badge}
                     />
                   );
