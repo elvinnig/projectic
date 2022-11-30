@@ -31,13 +31,37 @@ const ViewProject = () => {
             })
           );
           axios
-            .get(`http://localhost:8000/api/v1/files/${localStorage.getItem('current_project')}`)
+            .get(
+              `http://localhost:8000/api/v1/files/${localStorage.getItem(
+                'current_project'
+              )}`
+            )
             .then((result) => {
               setFiles(result.data);
             });
         });
     }
   }, []);
+
+  const onClickDeleteProject = () => {
+    axios
+      .delete(
+        `http://localhost:8000/api/v1/projects/${localStorage.getItem(
+          'current_project'
+        )}`
+      )
+      .then((response) => {
+        if (response.data.status === 'Project_removed') {
+          files.map((file) => {
+            return axios.delete(
+              `http://localhost:8000/api/v1/files/${file._id}`
+            );
+          });
+          localStorage.removeItem('current_project');
+          navigate('/users/dashboard');
+        }
+      });
+  };
   return (
     <>
       <Navbar />
@@ -66,6 +90,8 @@ const ViewProject = () => {
             <button
               type='button'
               className='btn btn-labeled btn-dark my-2 me-2'
+              data-bs-toggle='modal'
+              data-bs-target='#exampleModal'
             >
               Delete
             </button>
@@ -131,6 +157,51 @@ const ViewProject = () => {
               />
             );
           })}
+        </div>
+
+        {/* MODAL FOR DELETE BUTTON */}
+        <div
+          className='modal fade'
+          id='exampleModal'
+          tabIndex='-1'
+          aria-labelledby='exampleModalLabel'
+          aria-hidden='true'
+        >
+          <div className='modal-dialog modal-dialog-centered'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <h1 className='modal-title fs-5' id='staticBackdropLabel'>
+                  Delete Project
+                </h1>
+                <button
+                  type='button'
+                  className='btn-close'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                ></button>
+              </div>
+              <div className='modal-body'>
+                Are you sure you want to delete this project?
+              </div>
+              <div className='modal-footer'>
+                <button
+                  type='button'
+                  className='btn btn-secondary'
+                  data-bs-dismiss='modal'
+                >
+                  Close
+                </button>
+                <button
+                  type='button'
+                  className='btn btn-danger'
+                  onClick={onClickDeleteProject}
+                  data-bs-dismiss='modal'
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
