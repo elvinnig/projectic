@@ -1,19 +1,91 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+import UploadWidget from '../components/UploadWidget';
 //*CSS
 import './css/user.css'
 
-function UserPage() {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
+const UserPage = () => {
+  const [userFirstName, setUserFirstName] = useState('');
+  const [userLastName, setUserLastName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+console.log(username);
+  const [profile, setProfile] = useState('');
 
+  const [allUsername, setAllUsername] = useState('');
+  console.log(allUsername);
+  const [error, setError] = useState('');
+  //*local storage
+  const inLocalStorage = localStorage.getItem('projectic');
+  const hideSuccessMessage = (timeOut) => {
+    setTimeout(() => {
+      setError('')
+    }, timeOut);
+};
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/v1/users/${inLocalStorage}`).then((result) => {
+      console.log(result)
+      
+      setUserFirstName(
+       result.data.firstname,
+      );
+      setUserLastName(
+        result.data.lastname,
+       );
+       setUserEmail(
+        result.data.email,
+       );
+       setUsername(
+        result.data.username,
+       );
+       setProfile(
+        result.data.profilePicture,
+       );
+    });
+
+    setAllUsername([]);
+    // TODO get all user username for comparing
+    axios.get('http://localhost:8000/api/v1/users/').then((result) => {
+      setAllUsername(
+        result.data.map((user) => {
+          return user.username;
+        })
+      );
+    });
+
+    // eslint-disable-next-line
+  }, [])
+ 
+  const onSubmitUpdateProfile = (e) => {
+    e.preventDefault();
+    if (allUsername.includes(username)) {
+      setError('Existing username');
+      hideSuccessMessage(1500)
+      return;
+    }
+    axios
+      .patch(`http://localhost:8000/api/v1/users/${inLocalStorage}`, {
+        firstname: userFirstName,
+        lastname: userLastName,
+        email: userEmail,
+        profilePicture: profile,
+        username:username,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.status === 200) {
+          window.location.reload();
+        }
+      });
+    
+  };
   return (
-    <div className='vh-100 d-flex justify-content-center align-items-center'>
-      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4'>
-          <form className=''>
+    <>
+     <Navbar />
+    <div className='vh-80 d-flex justify-content-center align-items-center'>
+      <div className='reg-container d-flex justify-content-center align-items-center  rounded py-3 px-4'>
+          <form className='' onSubmit={onSubmitUpdateProfile}>
             <div className='mb-3'>
               <div className='row'>
               <div class="mb-3">
@@ -25,13 +97,13 @@ function UserPage() {
                     </label>
                     <div className='reg-col-1  justify-content-center'>
                      <img class="rounded float-start" alt='image_here'   //picture image
-                        src='https://cdn4.iconfinder.com/data/icons/social-messaging-productivity-5/128/selfie-male-256.png' className='w-50 mb-3' />
-         
-                    <div className='mb-3 d-flex justify-content-center'>
-                        <input
-                        type='file'
-                        value=''
-                         />
+                        src={profile} id='thumbnail' className='w-50 mb-3' />
+                    <div className='mb-4 d-flex justify-content-flex-start'>
+                   <UploadWidget
+                  buttonText='Update Your Profile'
+                  folderName='thumbnail'
+                  thumbnailSet={setProfile}
+                  /> 
                     </div>
                 </div>
              </div>
@@ -44,10 +116,9 @@ function UserPage() {
                     className='form-control'
                     id='firstname'
                     placeholder='First name'
-                    required
-                    value={firstname}
+                    value={userFirstName}
                     onChange={(e) => {
-                      setFirstname(e.target.value);
+                      setUserFirstName(e.target.value);
                     }}
                   />
                 </div>
@@ -60,10 +131,9 @@ function UserPage() {
                     className='form-control'
                     id='lastname'
                     placeholder='Last name'
-                    required
-                    value={lastname}
+                    value={userLastName}
                     onChange={(e) => {
-                      setLastname(e.target.value);
+                      setUserLastName(e.target.value);
                     }}
                   />
                 </div>
@@ -78,10 +148,9 @@ function UserPage() {
                 className='form-control'
                 id='email'
                 placeholder='Email'
-                required
-                value={email}
+                value={userEmail}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setUserEmail(e.target.value);
                 }}
               />
             </div>
@@ -94,36 +163,25 @@ function UserPage() {
                 className='form-control'
                 id='username'
                 placeholder='Username'
-                required
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
               />
+             {error ? (
+                          <small className='text-danger'>{error}</small>
+                             ) : null}
             </div>
             <div className='mb-3'>
               <div className='row'>
-                <label htmlFor='password' className='form-label'>
-                  Password:
-                </label>
-                <div className='col'>
-                  <input
-                    className='form-control'
-                    id='password'
-                    placeholder='Password'
-                    required
-                    value={password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-                </div>
                 <div className='mb-3 d-flex justify-content-center submit'>
+                <button className='btn btn-success px-2 margin'>Change Password</button>
               <input
                 type='submit'  //submit button
                 className='btn btn-primary px-4'
                 value='UPDATE'
               />
+              
              </div>
             </div>
             </div>
@@ -134,7 +192,7 @@ function UserPage() {
      
       
         </div>
-     
+        </>
     
   );
 }

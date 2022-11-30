@@ -19,7 +19,7 @@ function App() {
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
         <Route path='/users/user_settings' element={<UserPage />} />
-=========
+
         <Route path='/project' element={<ViewProject />} />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
