@@ -57,6 +57,18 @@ const UserPage = () => {
   const onSubmitUpdateProfile = (e) => {
     e.preventDefault();
     if (allUsername.includes(username)) {
+      axios
+      .patch(`http://localhost:8000/api/v1/users/${inLocalStorage}`, {
+        firstname: userFirstName,
+        lastname: userLastName,
+        email: userEmail,
+        profilePicture: profile,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.reload();
+        }
+      });
       setError('Existing username');
       hideSuccessMessage(1500)
       return;
