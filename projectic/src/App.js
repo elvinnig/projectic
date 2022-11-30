@@ -5,11 +5,12 @@ import { Route, Routes } from 'react-router';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import Homepage from './pages/Homepage';
-import UserPage from './pages/UserPage'
+import UserPage from './pages/UserPage';
 import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
+import UpdateProject from './pages/UpdateProject';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/users/addFile' element={<AddFilePage />} />
         <Route path='/user/dashboard' element={<UserDashboard />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
+        <Route path='/users/update_project' element={<UpdateProject />} />
       </Routes>
     </div>
   );
