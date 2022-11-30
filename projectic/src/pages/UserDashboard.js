@@ -126,6 +126,15 @@ const UserDashboard = () => {
             {/* Badge Container */}
             <div className='d-flex justify-content-center w-100'>
               <ul className='list-unstyled w-100'>
+                <li
+                  className='p-2 border-bottom'
+                  onClick={() => {
+                    setSelectedBadge('');
+                  }}
+                >
+                  {' '}
+                  Show All Project
+                </li>
                 {/* Maps through the badges available in Projects card */}
                 {[...allBadges].map((badge, index) => {
                   return (
@@ -133,7 +142,7 @@ const UserDashboard = () => {
                       className='p-2 border-bottom'
                       key={index}
                       onClick={() => {
-                        setSelectedBadge(badge._id);
+                        setSelectedBadge(badge.name);
                       }}
                     >
                       {badge.name}
@@ -180,17 +189,26 @@ const UserDashboard = () => {
             <div className='container-fluid'>
               {/* Change row-cols-md-2 to 4 if smaller card */}
               <div className='row row-cols-1 row-cols-md-2 g-4'>
-                {[...allProject].map((project, index) => {
-                  return (
-                    <ProjectCards
-                      key={project.name + index}
-                      image={project.thumbnail}
-                      title={project.name}
-                      id={project._id}
-                      //   badge={project.badge}
-                    />
-                  );
-                })}
+                {[...allProject]
+                  .filter((findProject) => {
+                    if (selectedBadge) {
+                      return findProject.badgeID.find((badge) => {
+                        return badge.name === selectedBadge;
+                      });
+                    }
+                    return findProject;
+                  })
+                  .map((project, index) => {
+                    return (
+                      <ProjectCards
+                        key={project.name + index}
+                        image={project.thumbnail}
+                        title={project.name}
+                        id={project._id}
+                        //   badge={project.badge}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>
