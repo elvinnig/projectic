@@ -1,54 +1,54 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 //*Models
 const File = require('../models/File');
 
 //TODO: POST
-router.post('/', ( request, response ) => {
-    let addFIle = new File( request.body );
-    addFIle.save().then( result => {
-        response.status(200).send({ status: 'You added new File' });
-    });
+router.post('/', (request, response) => {
+  let addFIle = new File({
+    ...request.body,
+    projectId: mongoose.Types.ObjectId(request.body.projectID),
+    fileTypeId: mongoose.Types.ObjectId(request.body.fileTypeID),
+  });
+  addFIle.save().then((result) => {
+    response.status(200).send({ status: 'You added new File' });
+  });
 });
 
 //TODO: GET files/:filesId
-router.get('/:fileId', (request, response) => {
-    File.findOne(
-        { _id: request.params.fileId }
-        )
-    .then( (result) => {
-        console.log( result );
-        if( typeof result === 'object' ){
-            response.status(202).send( result );
-        }
-    });
+router.get('/:projectID', (request, response) => {
+  File.find({ projectId: request.params.projectID }).then((result) => {
+    console.log(result);
+    if (typeof result === 'object') {
+      response.status(202).send(result);
+    }
+  });
 });
 
 //TODO: PATCH files/:filesId
-router.patch('/:fileId', ( request, response ) => {
-    const addFileId = request.params.fileId;
-    File.updateOne(
-        { _id: addFileId }, 
-        { $set: { ...request.body } })
-    .then( result => {
-        if( result.modifiedCount === 1 ){
-            response.status(200).send({ status: "File has been updated" });
-        }
-    });
+router.patch('/:fileId', (request, response) => {
+  const addFileId = request.params.fileId;
+  File.updateOne({ _id: addFileId }, { $set: { ...request.body } }).then(
+    (result) => {
+      if (result.modifiedCount === 1) {
+        response.status(200).send({ status: 'File has been updated' });
+      }
+    }
+  );
 });
 
 //TODO: DELETE files/:filesId
-router.delete('/:fileId', (request,response)=>{
-    File.deleteOne({_id: request.params.fileId})
-    .then(result => {
-        if (result.deletedCount === 1 ){
-            response.status(200).send({status:'File removed'})
+router.delete('/:fileId', (request, response) => {
+  File.deleteOne({ _id: request.params.fileId }).then((result) => {
+    if (result.deletedCount === 1) {
+      response.status(200).send({ status: 'File removed' });
     } else {
-        response.status(404).send({status:'This File is already deleted'})
-        return 
-        }
-    })
+      response.status(404).send({ status: 'This File is already deleted' });
+      return;
+    }
+  });
 });
 
 module.exports = router;
