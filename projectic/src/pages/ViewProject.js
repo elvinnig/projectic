@@ -85,8 +85,9 @@ const ViewProject = () => {
             <button
               type='button'
               className='btn btn-labeled btn-dark my-2 me-4'
-              // data-bs-toggle='modal'
-              // data-bs-target='#updateProject'
+              onClick={() => {
+                navigate('/users/update_project');
+              }}
             >
               Update
             </button>
@@ -150,7 +151,6 @@ const ViewProject = () => {
         )}
 
         {/* Files Map */}
-
         <div className='row'>
           <h5 className='mt-3'>
             Project Files{' '}
