@@ -34,6 +34,7 @@ function LoginPage() {
       })
       .then((result) => {
         //TODO to remove
+        // [x]
         console.log(result);
         if (result.data.status === 'usernameInvalid') {
           return setMessage('Username Invalid!');

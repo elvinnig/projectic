@@ -24,6 +24,7 @@ const ViewProject = () => {
           )}`
         )
         .then((response) => {
+          // [x]
           console.log(response.data);
           setProjectInfo(
             response.data.filter((project) => {
@@ -42,6 +43,7 @@ const ViewProject = () => {
     <>
       <Navbar />
       <div className='container'>
+        {/* [x] */}
         {/* {console.log(projectInfo[0].badgeID)} */}
         <div className='row row-cols-auto justify-content-between'>
           <div className='col'>

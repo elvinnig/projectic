@@ -66,6 +66,7 @@ const AddFilePage = () => {
             );
           })}
         </div>
+        {/* [x] */}
         {console.log(files)}
         <div className='d-flex justify-content-end'>
           <button

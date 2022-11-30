@@ -67,6 +67,7 @@ function RegistrationPage() {
           'https://img.myloview.fr/images/user-icon-human-person-symbol-avatar-log-in-vector-sign-400-256564255.jpg',
       })
       .then((result) => {
+        // [x]
         console.log(result.data.status);
         if (result.data.status) {
           navigate('/users/log_in');
