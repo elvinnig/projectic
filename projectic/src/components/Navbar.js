@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { fetchUser } from '../redux/slices/userSlice';
+// icons
+import * as Icon from 'react-bootstrap-icons';
+
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -80,17 +83,17 @@ const Navbar = () => {
                 <hr className='dropdown-divider' />
                 <li>
                   <a className='dropdown-item' href='/users/dashboard'>
-                    My Dashboard
+                    <Icon.HouseDashFill /> My Dashboard
                   </a>
                 </li>
                 <li>
                   <a className='dropdown-item' href='#'>
-                    Settings
+                    <Icon.GearFill /> Settings
                   </a>
                 </li>
                 <li>
                   <a className='dropdown-item' href='#'>
-                    Profile
+                    <Icon.PersonFill /> Profile
                   </a>
                 </li>
                 <li>
@@ -105,7 +108,7 @@ const Navbar = () => {
                       navigate('/');
                     }}
                   >
-                    Sign out
+                    <Icon.BoxArrowLeft /> Sign out
                   </button>
                 </li>
               </ul>
