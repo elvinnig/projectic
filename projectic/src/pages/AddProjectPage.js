@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 //*Components
@@ -6,32 +6,46 @@ import Navbar from '../components/Navbar';
 import UploadWidget from '../components/UploadWidget';
 
 const AddProjectPage = () => {
-  /* const [fileTypes, setFileTypes] = useState([]);
-  const [files, setFiles] = useState([]); */
+  const [allBadges, setAllBadges] = useState([]);
 
-  /*   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/filetypes').then((response) => {
-      setFileTypes(response.data);
-    });
-  }, []); */
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:8000/api/v1/badges/${localStorage.getItem(
+          'projectic'
+        )}`
+      )
+      .then((response) => {
+        // [x]
+        console.log(response.data);
+        setAllBadges([...response.data]);
+      });
+  }, []);
+
   const navigate = useNavigate();
 
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [thumbnail, setThubnail] = useState('');
+  const [selectedBadge, setSelectedBadge] = useState([]);
 
   const onSubmitProject = (e) => {
     e.preventDefault();
+    console.log({ POST: selectedBadge });
     axios
       .post('http://localhost:8000/api/v1/projects', {
         name: projectName,
         description: projectDescription,
         authorID: localStorage.getItem('projectic'),
         thumbnail: thumbnail,
+        badgeID: [...selectedBadge].map((badge) => {
+          return badge._id;
+        }),
       })
       .then((response) => {
-        console.log(response.status)
-        if(response.status === 200){
+        console.log(response.data);
+        if (response.status === 200) {
+          localStorage.setItem('current_project', response.data.id);
           navigate('/addFile');
         }
       });
@@ -39,9 +53,13 @@ const AddProjectPage = () => {
   return (
     <>
       <Navbar />
-      <div className='container border my-2'>
-        <h3 className='mb-3'>New Project</h3>
-        <form onSubmit={(e) => {onSubmitProject(e)}}>
+      <div className='container border border-2 rounded my-2 p-5'>
+        <h3 className='mb-3 '>New Project</h3>
+        <form
+          onSubmit={(e) => {
+            onSubmitProject(e);
+          }}
+        >
           {/* PROJECT NAME */}
           <div className='mb-5'>
             <label htmlFor='projectName' className='form-label'>
@@ -78,6 +96,65 @@ const AddProjectPage = () => {
               required
             ></textarea>
           </div>
+          {/* ADD PROJECT BADGES */}
+          <div className='mb-5'>
+            <label htmlFor='projectName' className='form-label'>
+              Badge you project:
+            </label>
+            <select
+              className='form-select'
+              aria-label='Default select example'
+              onChange={(e) => {
+                if (
+                  selectedBadge.find(
+                    (badge) => badge.name === JSON.parse(e.target.value).name
+                  ) === undefined
+                ) {
+                  setSelectedBadge([
+                    ...selectedBadge,
+                    JSON.parse(e.target.value),
+                  ]);
+                }
+              }}
+            >
+              <option defaultValue>Select Badge Project</option>
+              {[...allBadges].map((badge, index) => {
+                return (
+                  <option key={index} value={JSON.stringify(badge)}>
+                    {badge.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* LIST OF SELECTED BADGE */}
+          <div className='mb-5'>
+            <ul className='list-unstyled'>
+              {[...selectedBadge].map((badge, index) => {
+                return (
+                  <li
+                    className='mb-3 border-bottom d-flex justify-content-between'
+                    key={index}
+                  >
+                    {badge.name}
+                    <span>
+                      <button
+                        className='btn btn-danger'
+                        type='button'
+                        onClick={() => {
+                          let data = [...selectedBadge];
+                          data.splice(index, 1);
+                          setSelectedBadge(data);
+                        }}
+                      >
+                        X
+                      </button>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           {/* PROJECT THUMBNAIL */}
           <div className='mb-5'>
             <label htmlFor='projectThumbnail' className='form-label'>
@@ -90,7 +167,6 @@ const AddProjectPage = () => {
                   folderName='thumbnail'
                   thumbnailSet={setThubnail}
                 />
-                {console.log({ thumbnail: thumbnail })}
               </div>
               <div className='col d-flex justify-content-center'>
                 <img width='250px' id='thumbnail' src='' alt='' />

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { fetchUser } from '../redux/slices/userSlice';
-
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -75,8 +74,12 @@ const Navbar = () => {
                 />
               </a>
               <ul className='dropdown-menu text-small'>
+                <li className='dropdown-item'>
+                  <h5>{currentUser.username}</h5>
+                </li>
+                <hr className='dropdown-divider' />
                 <li>
-                  <a className='dropdown-item' href='/user/dashboard'>
+                  <a className='dropdown-item' href='/users/dashboard'>
                     My Dashboard
                   </a>
                 </li>
@@ -86,7 +89,7 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <a className='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='/users/user_settings'>
                     Profile
                   </a>
                 </li>

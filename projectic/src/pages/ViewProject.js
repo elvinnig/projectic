@@ -1,77 +1,211 @@
-import FilesCard from "../components/FilesCard";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import FilesCard from '../components/FilesCard';
+import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
+import moment from 'moment';
 
 const ViewProject = () => {
-    // !Test Data
-    const testData = [{
-        img: 'https://images.unsplash.com/photo-1611013621183-cde811b6ddb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=592&q=80' ,
-        title: 'Test Title for the Project View',
-        badges: 'test badge',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est ullamcorper eget nulla facilisi. Pulvinar etiam non quam lacus suspendisse faucibus. Facilisis magna etiam tempor orci eu lobortis elementum nibh tellus. Neque egestas congue quisque egestas diam in arcu. Et malesuada fames ac turpis egestas. Ac felis donec et odio pellentesque diam volutpat commodo. ',
-        files:[
-            {filetype:'test file', link: 'https://www.speedtest.net/' },
-            {filetype:'test file 2', link: 'https://fitgirl-repacks.site/'},
-            {filetype:'test file 3', link: 'https://fitgirl-repacks.site/'}
-        ],
-        dateCreated : Date.now(),
-        dateUpdated: Date.now
-    // !End of Test Date
-    }];
-    // !Test Date
-    const today = new Date(testData[0].dateCreated);
-    // !End of Test Date
-    return (
-        <div className="container-fluid">
-            {/* Header */}
-            <div className="row row-cols-auto justify-content-between">
-                <div className="col">
-                    <button type="button" className="btn btn-labeled btn-primary my-2">Back</button>
-                </div>
-                <div className="col">
-                    <button type="button" className="btn btn-labeled btn-dark my-2 me-4">Update</button>
-                    <button type="button" className="btn btn-labeled btn-dark my-2 me-2">Delete</button>
-                </div>
-            </div>
+  const navigate = useNavigate();
+  const [projectInfo, setProjectInfo] = useState({});
+  const project = useSelector((state) => state.project);
+  const [files, setFiles] = useState([]);
 
-            {/* Image, Title, Badge */}
-            <div className="container-fluid border-top border-bottom border-dark">
-                <div className="row">
-                    <div className="card col-4 my-2" style={{width: "25%"}}>
-                        <img src={testData[0].img} class="card-img-top" alt="..."/>
-                        <div className="row">
-                            <div class="card-body col-4">
-                                Date Created:
-                                <p class="card-text">{today.toDateString()}</p>
-                            </div>
-                            <div class="card-body col-4">
-                                Date Updated:
-                                <p class="card-text">{today.toDateString()}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="text-center fs-2 fw-bold">
-                            {testData[0].title}
-                        </div>
-                        <div className="text-center fs-5">
-                            <span class="badge bg-dark">{testData[0].badges}</span>
-                        </div>
-                        <blockquote className="mt-4 fs-6 fw-semibold">
-                            {testData[0].description}
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
+  useEffect(() => {
+    if (!('current_project' in localStorage)) {
+      // TODO navigate to dashboard
+      navigate('/users/dashboard');
+    } else {
+      axios
+        .get(
+          `http://localhost:8000/api/v1/projects/${localStorage.getItem(
+            'projectic'
+          )}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          setProjectInfo(
+            response.data.filter((project) => {
+              return project._id === localStorage.getItem('current_project');
+            })
+          );
+          axios
+            .get(
+              `http://localhost:8000/api/v1/files/${localStorage.getItem(
+                'current_project'
+              )}`
+            )
+            .then((result) => {
+              setFiles(result.data);
+            });
+        });
+    }
+  }, []);
 
-            {/* Files Map */}
-            <div class="row">
-                {
-                    testData[0].files.map(file => {
-                        return <FilesCard title={file.filetype} link={file.link}/>
-                    })
-                }
-            </div>
+  const onClickDeleteProject = () => {
+    axios
+      .delete(
+        `http://localhost:8000/api/v1/projects/${localStorage.getItem(
+          'current_project'
+        )}`
+      )
+      .then((response) => {
+        if (response.data.status === 'Project_removed') {
+          files.map((file) => {
+            return axios.delete(
+              `http://localhost:8000/api/v1/files/${file._id}`
+            );
+          });
+          localStorage.removeItem('current_project');
+          navigate('/users/dashboard');
+        }
+      });
+  };
+  return (
+    <>
+      <Navbar />
+      <div className='container'>
+        {/* {console.log(projectInfo[0].badgeID)} */}
+        <div className='row row-cols-auto justify-content-between'>
+          <div className='col'>
+            <button
+              type='button'
+              className='btn btn-labeled btn-primary my-2'
+              onClick={() => {
+                localStorage.removeItem('current_project');
+                navigate('/users/dashboard');
+              }}
+            >
+              Back to dashboard
+            </button>
+          </div>
+          <div className='col'>
+            <button
+              type='button'
+              className='btn btn-labeled btn-dark my-2 me-4'
+            >
+              Update
+            </button>
+            <button
+              type='button'
+              className='btn btn-labeled btn-dark my-2 me-2'
+              data-bs-toggle='modal'
+              data-bs-target='#exampleModal'
+            >
+              Delete
+            </button>
+          </div>
         </div>
-    )
-}
+
+        {/* Image, Title, Badge */}
+        {projectInfo.length === 1 && (
+          <div className='container-fluid border-top border-bottom border-dark'>
+            <div className='row my-3'>
+              <div className='col'>
+                <div className='text-center fs-2 fw-bold'>
+                  {projectInfo[0].name}
+                </div>
+                <div className='text-center fs-5'>
+                  {projectInfo[0].badgeID.map((badge, index) => {
+                    return (
+                      <span className='badge bg-dark me-2' key={index}>
+                        {badge.name}
+                      </span>
+                    );
+                  })}
+                </div>
+                <blockquote className='mt-4 fs-6 fw-semibold'>
+                  {projectInfo[0].description}
+                </blockquote>
+              </div>
+              <div className='card col-4 my-2' style={{ width: '25%' }}>
+                <img
+                  src={projectInfo[0].thumbnail}
+                  className='card-img-top'
+                  alt='...'
+                  width='250px'
+                  height='150px'
+                />
+                <div className='row'>
+                  <div className='card-body col-4'>
+                    Date Created:
+                    <p className='card-text'>
+                      {moment(projectInfo[0].dateCreated).format('MM/DD/YYYY')}
+                    </p>
+                  </div>
+                  <div className='card-body col-4'>
+                    Date Updated:
+                    <p className='card-text'>
+                      {moment(projectInfo[0].dateUpdated).format('MM/DD/YYYY')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Files Map */}
+        <div className='row'>
+          {[...files].map((file, index) => {
+            return (
+              <FilesCard
+                title={file.filename}
+                link={file.fileLink}
+                key={index}
+              />
+            );
+          })}
+        </div>
+
+        {/* MODAL FOR DELETE BUTTON */}
+        <div
+          className='modal fade'
+          id='exampleModal'
+          tabIndex='-1'
+          aria-labelledby='exampleModalLabel'
+          aria-hidden='true'
+        >
+          <div className='modal-dialog modal-dialog-centered'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <h1 className='modal-title fs-5' id='staticBackdropLabel'>
+                  Delete Project
+                </h1>
+                <button
+                  type='button'
+                  className='btn-close'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                ></button>
+              </div>
+              <div className='modal-body'>
+                Are you sure you want to delete this project?
+              </div>
+              <div className='modal-footer'>
+                <button
+                  type='button'
+                  className='btn btn-secondary'
+                  data-bs-dismiss='modal'
+                >
+                  Close
+                </button>
+                <button
+                  type='button'
+                  className='btn btn-danger'
+                  onClick={onClickDeleteProject}
+                  data-bs-dismiss='modal'
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default ViewProject;

@@ -7,7 +7,7 @@ export const projectSlice = createSlice({
     fetchProject: (state, action) => {
       //* store the login user info to the state
       state = [...action.payload.project];
-      // console.log(state);
+      console.log(state);
     },
   },
 });

@@ -2,11 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 //! for testing
 export const badgeSlice = createSlice({
   name: 'badge',
-  initialState: [
-    { _id: 0, userID: 0, name: 'Easy' },
-    { _id: 1, userID: 0, name: 'Medium' },
-    { _id: 2, userID: 0, name: 'Hard' },
-  ],
+  initialState: [],
   reducers: {
     createBadge: (state, action) => {
       //TODO add new badge in the current badge state
@@ -22,8 +18,8 @@ export const badgeSlice = createSlice({
     },
     fetchBadge: (state, action) => {
       //TODO get all badge in the database then save to state
-      //state = [];
-      //state = state.push(...action.payload.badge);
+      state = [];
+      state = state.push(...action.payload.badge);
     },
   },
 });
