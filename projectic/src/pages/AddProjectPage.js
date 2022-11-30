@@ -46,7 +46,7 @@ const AddProjectPage = () => {
         console.log(response.data);
         if (response.status === 200) {
           localStorage.setItem('current_project', response.data.id);
-          navigate('/addFile');
+          navigate('/users/addFile');
         }
       });
   };

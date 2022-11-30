@@ -19,12 +19,11 @@ function App() {
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
         <Route path='/users/user_settings' element={<UserPage />} />
-        
+
         <Route path='/users/view_project' element={<ViewProject />} />
-        <Route path='/project' element={<ViewProject />} />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
-        <Route path='/addFile' element={<AddFilePage />} />
+        <Route path='/users/addFile' element={<AddFilePage />} />
         <Route path='/user/dashboard' element={<UserDashboard />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
       </Routes>

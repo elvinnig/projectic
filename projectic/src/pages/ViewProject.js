@@ -13,6 +13,7 @@ const ViewProject = () => {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
+    localStorage.removeItem('file_action');
     if (!('current_project' in localStorage)) {
       // TODO navigate to dashboard
       navigate('/users/dashboard');
@@ -66,7 +67,7 @@ const ViewProject = () => {
     <>
       <Navbar />
       <div className='container'>
-        {/* {console.log(projectInfo[0].badgeID)} */}
+        {/*[x] {console.log(projectInfo[0].badgeID)} */}
         <div className='row row-cols-auto justify-content-between'>
           <div className='col'>
             <button
@@ -84,6 +85,8 @@ const ViewProject = () => {
             <button
               type='button'
               className='btn btn-labeled btn-dark my-2 me-4'
+              // data-bs-toggle='modal'
+              // data-bs-target='#updateProject'
             >
               Update
             </button>
@@ -91,7 +94,7 @@ const ViewProject = () => {
               type='button'
               className='btn btn-labeled btn-dark my-2 me-2'
               data-bs-toggle='modal'
-              data-bs-target='#exampleModal'
+              data-bs-target='#deleteProject'
             >
               Delete
             </button>
@@ -147,13 +150,30 @@ const ViewProject = () => {
         )}
 
         {/* Files Map */}
+
         <div className='row'>
+          <h5 className='mt-3'>
+            Project Files{' '}
+            <span>
+              <button
+                className='btn btn-primary ms-3'
+                onClick={() => {
+                  localStorage.setItem('file_action', 'addFile');
+                  navigate('/users/addFile');
+                }}
+              >
+                {' '}
+                Add File
+              </button>
+            </span>
+          </h5>
           {[...files].map((file, index) => {
             return (
               <FilesCard
                 title={file.filename}
                 link={file.fileLink}
                 key={index}
+                id={file._id}
               />
             );
           })}
@@ -162,7 +182,7 @@ const ViewProject = () => {
         {/* MODAL FOR DELETE BUTTON */}
         <div
           className='modal fade'
-          id='exampleModal'
+          id='deleteProject'
           tabIndex='-1'
           aria-labelledby='exampleModalLabel'
           aria-hidden='true'
