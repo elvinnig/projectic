@@ -9,6 +9,7 @@ import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/user/add_project' element={<AddProjectPage />} />
         <Route path='/addFile' element={<AddFilePage />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
+        <Route path='/users/settings' element={<Settings />} />
       </Routes>
     </div>
   );

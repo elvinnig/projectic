@@ -71,7 +71,7 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item' href='/users/settings'>
                       <Icon.GearFill /> Settings
                     </a>
                   </li>

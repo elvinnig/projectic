@@ -88,9 +88,6 @@ const UserDashboard = () => {
                   aria-expanded='false'
                 >
                   <button type='button' className='btn btn-labeled btn-link'>
-                    <span className='btn-label'>
-                      {/* <i className='bi bi-plus-circle me-1'></i> */}
-                    </span>
                     New Badge
                   </button>
                 </a>
