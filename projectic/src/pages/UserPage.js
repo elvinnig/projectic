@@ -85,23 +85,25 @@ const UserPage = () => {
           <form className='' onSubmit={onSubmitUpdateProfile}>
             <div className='mb-3'>
               <div className='row'>
-              <div class="mb-3">
+              <div className="mb-3">
                  <h5 className='mb-3'>Profile Update</h5>
                     <label htmlFor='picture' className='form-label'>
                     Profile Picture:
                     </label>
                     <div className='reg-col-1  justify-content-center'>
-                     <img class="rounded float-start" alt='image_here'   //picture image
-                        src={profile} id='thumbnail' className='w-50 mb-3' />
+                     <img className="rounded float-start w-50 mb-3" alt='image_here'  
+                        src={profile} id='thumbnail' />
                     <div className='mb-4 d-flex justify-content-flex-start'>
-                   <UploadWidget
+                  
+                    </div>
+                    <UploadWidget
                   buttonText='Update Your Profile'
                   folderName='thumbnail'
                   thumbnailSet={setProfile}
                   /> 
-                    </div>
                 </div>
              </div>
+             
                 <div className='col'>
                   <label htmlFor='firstname' className='form-label'>
                     First name:
