@@ -13,6 +13,8 @@ const UserPage = () => {
   const [profile, setProfile] = useState('');
   const [allUsername, setAllUsername] = useState('');
   const [error, setError] = useState('');
+//TODO check current username
+  const [currentUser, setCurrentUser] = useState('');
 
   //TODO: getItem from local storage
   const inLocalStorage = localStorage.getItem('projectic');
@@ -21,6 +23,7 @@ const UserPage = () => {
       setError('')
     }, timeOut);
 };
+
   useEffect(() => {
     //TODO: Get user by id
     axios.get(`http://localhost:8000/api/v1/users/${inLocalStorage}`).then((result) => {
@@ -39,6 +42,9 @@ const UserPage = () => {
        setProfile(
         result.data.profilePicture,
        );
+       setCurrentUser(
+        result.data.username,
+       );
     });
 
     setAllUsername([]);
@@ -56,23 +62,27 @@ const UserPage = () => {
  //TODO: onsubmit handler
   const onSubmitUpdateProfile = (e) => {
     e.preventDefault();
+  if(username !== currentUser){
     if (allUsername.includes(username)) {
+      setError('Existing username')
+      hideSuccessMessage(1500)
+      return;
+    }else{
       axios
       .patch(`http://localhost:8000/api/v1/users/${inLocalStorage}`, {
         firstname: userFirstName,
         lastname: userLastName,
         email: userEmail,
         profilePicture: profile,
+        username:username,
       })
       .then((response) => {
         if (response.status === 200) {
           window.location.reload();
         }
       });
-      setError('Existing username');
-      hideSuccessMessage(1500)
-      return;
     }
+  }else{
     //TODO: Update user by id
     axios
       .patch(`http://localhost:8000/api/v1/users/${inLocalStorage}`, {
@@ -87,7 +97,7 @@ const UserPage = () => {
           window.location.reload();
         }
       });
-    
+    }
   };
   return (
     <>
