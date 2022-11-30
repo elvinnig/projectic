@@ -24,8 +24,6 @@ const UserPage = () => {
   useEffect(() => {
     //TODO: Get user by id
     axios.get(`http://localhost:8000/api/v1/users/${inLocalStorage}`).then((result) => {
-      console.log(result)
-      
       setUserFirstName(
        result.data.firstname,
       );
@@ -73,7 +71,6 @@ const UserPage = () => {
         username:username,
       })
       .then((response) => {
-        console.log(response.data);
         if (response.status === 200) {
           window.location.reload();
         }
@@ -97,7 +94,6 @@ const UserPage = () => {
                      <img class="rounded float-start" alt='image_here'   //picture image
                         src={profile} id='thumbnail' className='w-50 mb-3' />
                     <div className='mb-4 d-flex justify-content-flex-start'>
-                  //* upload widget
                    <UploadWidget
                   buttonText='Update Your Profile'
                   folderName='thumbnail'
