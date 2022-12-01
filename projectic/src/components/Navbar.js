@@ -33,42 +33,37 @@ const Navbar = () => {
       <div className='container'>
           {/* Login Navigation */}
           {Object.keys(currentUser).length > 0 ? (
-            <div className='dropdown text-end'>
-              <a
-                href='#'
-                className='d-block link-dark text-decoration-none dropdown-toggle'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                <img
-                  src={currentUser.profilePicture}
-                  alt=''
-                  width='32'
-                  height='32'
-                  className='rounded-circle'
-                />
-              </a>
-              <ul className='dropdown-menu text-small'>
-                <li className='dropdown-item'>
-                  <h5>{currentUser.username}</h5>
-                </li>
-                <hr className='dropdown-divider' />
-                <li>
-                  <a className='dropdown-item' href='/users/dashboard'>
-                    My Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='/users/user_settings'>
-                    Profile
-                  </a>
-                </li>
-                <li>
+          <div className='d-flex flex-wrap align-items-center justify-content-lg-between'>
+            {/*Left Logo */}
+            <a href='/users/dashboard' className='d-flex mb-2 mb-lg-0 align-self-start'>
+              <img
+                className='bi me-2'
+                alt='navbar-logo'
+                src={nav_logo}
+                width='150'
+              />
+            </a>
+            <div className='d-flex align-items-center'>
+              <span className='fs-6 fw-bold'>Welcome, {currentUser.firstname}&nbsp;</span>
+              <div className='dropdown text-end'>
+                <a
+                  href='#'
+                  className='d-block link-dark text-decoration-none dropdown-toggle'
+                  data-bs-toggle='dropdown'
+                  aria-expanded='false'
+                >
+                  <img
+                    src={currentUser.profilePicture}
+                    alt=''
+                    width='32'
+                    height='32'
+                    className='rounded-circle'
+                  />
+                </a>
+                <ul className='dropdown-menu text-small dropdown-color'>
+                  <li className='dropdown-item'>
+                    <h5>{currentUser.username}</h5>
+                  </li>
                   <hr className='dropdown-divider' />
                   <li>
                     <a className='dropdown-item' href='/users/dashboard'>
