@@ -34,7 +34,7 @@ const ContactUs = () => {
     <div className='container' id='contact'>
       <section className='mb-4'>
         {/* Header */}
-        <h2 className='h1-responsive font-weight-bold text-center my-4'>
+        <h2 className='h1-responsive font-weight-bold text-center my-4 landing-text'>
           Contact us
         </h2>
 
@@ -136,15 +136,15 @@ const ContactUs = () => {
             <ul className='list-unstyled mb-0'>
               <li>
                 <Icon.GeoAltFill size={30} />
-                <p>Baguio, Benguet, PH</p>
+                <p><a href='https://goo.gl/maps/Xzrs39KGYsJMXYh57' target='_blank' rel='noreferrer'  className='link-dark text-decoration-none'>Baguio City, Benguet</a></p>
               </li>
               <li>
                 <Icon.PersonLinesFill size={30} />
-                <p>+63 (956) 772 0385</p>
+                <p><a href='tel:+639567720386' className='link-dark text-decoration-none' target='_blank' rel='noreferrer'> +63 956 772 0386</a></p>
               </li>
               <li>
                 <Icon.EnvelopeFill size={30} />
-                <p>projecticuplift@gmail.com</p>
+                <p><a href = "mailto: projecticuplift@gmail.com" className='link-dark text-decoration-none' target='_blank' rel='noreferrer'> projecticuplift@gmail.com</a></p>
               </li>
             </ul>
           </div>

@@ -158,7 +158,7 @@ const UserDashboard = () => {
                           setSelectedBadge(badge.name);
                         }}
                       >
-                        {badge.name}
+                        <div className='badge'>{badge.name}</div>
                       </li>
                     );
                   })}
