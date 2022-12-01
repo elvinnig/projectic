@@ -76,3 +76,16 @@ thead{
 img{
   pointer-events: none;
 }
+
+/* About Page */
+.about-button{
+  background-color: #00ADB5;
+}
+.about-button:hover{
+  background-color: #222831;
+  color: #EEEEEE
+}
+
+.about-modal{
+  background-color: #EEEEEE;
+}
