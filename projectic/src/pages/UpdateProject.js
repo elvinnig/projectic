@@ -108,7 +108,6 @@ const UpdateProject = () => {
               onChange={(e) => {
                 setProjectDescription(e.target.value);
               }}
-              required
             ></textarea>
           </div>
           {/* ADD PROJECT BADGES */}

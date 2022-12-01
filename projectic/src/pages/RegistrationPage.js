@@ -219,10 +219,10 @@ function RegistrationPage() {
                 Show password
               </label>
             </div>
-            <div className='mb-3 mt-2 d-flex justify-content-center'>
+            <div className='mb-3 mt-2 d-flex justify-content-end'>
               <input
                 type='submit'
-                className='btn btn-primary px-4'
+                className='btn btn-dark px-4'
                 value='Register'
               />
             </div>

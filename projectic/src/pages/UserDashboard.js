@@ -172,7 +172,7 @@ const UserDashboard = () => {
               {/* <div className='form-outline'> */}
               <button
                 type='button'
-                className='btn btn-labeled btn-primary'
+                className='btn btn-labeled btn-dark'
                 onClick={() => {
                   navigate('/user/add_project');
                 }}

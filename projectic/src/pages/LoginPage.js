@@ -121,7 +121,7 @@ function LoginPage() {
             <div className='mb-3 d-flex justify-content-center'>
               <input
                 type='submit'
-                className='btn btn-primary w-75'
+                className='btn btn-dark w-75'
                 value='Login'
               />
             </div>

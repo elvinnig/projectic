@@ -127,10 +127,10 @@ const ViewProject = () => {
                   {projectInfo[0].description}
                 </blockquote>
               </div>
-              <div className='card col-4 my-2' style={{ width: '25%' }}>
+              <div className='card col-4 my-2 h-50' style={{ width: '25%' }}>
                 <img
                   src={projectInfo[0].thumbnail}
-                  className='card-img-top'
+                  className='card-img-top pt-1'
                   alt='...'
                   width='250px'
                   height='150px'
