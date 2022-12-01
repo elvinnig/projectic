@@ -34,7 +34,6 @@ function LoginPage() {
       })
       .then((result) => {
         //TODO to remove
-        // [x]
         console.log(result);
         if (result.data.status === 'usernameInvalid') {
           return setMessage('Username Invalid!');
@@ -57,77 +56,75 @@ function LoginPage() {
   };
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
-      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 sign-up'>
-        <div className='p-5 rounded-3 d-flex flex-column align-items-center'>
-          <img alt='logo_here' src={logo} className='rounded-circle w-25' />
-          <small className='mb-3'>Sign in to continue</small>
-          <form
-            className='w-50'
-            onSubmit={(e) => {
-              onSubmitForm(e);
-            }}
-          >
-            <div className='mb-3'>
-              <label htmlFor='username' className='form-label'>
-                Username:
-              </label>
-              <input
-                type='text'
-                className='form-control'
-                id='username'
-                placeholder='Enter username'
-                required
-                value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
-              />
-            </div>
-            <div className='mb-3'>
-              <label htmlFor='password' className='form-label'>
-                Password:
-              </label>
-              <input
-                type='password'
-                className='form-control'
-                id='password'
-                placeholder='Enter password'
-                required
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </div>
-            <small className={`text-danger ${message ? 'visible' : 'invisible'}`}>
-              {message}
-            </small>
-            <div className='mb-3 d-flex justify-content-end mb-5'>
-              <a href='/users/log_in' className='link-primary'>
-                Forgot Password?
-              </a>
-            </div>
-            <ReCAPTCHA
-              sitekey='6LfFCdAiAAAAAMzlkMRfHBpUPXBfuJLfXVham1P5'
-              size='invisible'
+      <div className='p-5 rounded-3 d-flex flex-column align-items-center'>
+        <img alt='logo_here' src={logo} className='rounded-circle w-25' />
+        <small className='mb-3'>Sign in to continue</small>
+        <form
+          className='w-50'
+          onSubmit={(e) => {
+            onSubmitForm(e);
+          }}
+        >
+          <div className='mb-3'>
+            <label htmlFor='username' className='form-label'>
+              Username:
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              id='username'
+              placeholder='Enter username'
+              required
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
-            <div className='mb-3 d-flex justify-content-center'>
-              <input
-                type='submit'
-                className='btn btn-primary w-75'
-                value='Login'
-              />
-            </div>
-          </form>
-          <p>
-            Don't have an account?{' '}
-            <span>
-              <a href='/users/sign_up' className='link-primary'>
-                Sign Up
-              </a>
-            </span>
-          </p>
-        </div>
+          </div>
+          <div className='mb-3'>
+            <label htmlFor='password' className='form-label'>
+              Password:
+            </label>
+            <input
+              type='password'
+              className='form-control'
+              id='password'
+              placeholder='Enter password'
+              required
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <small className={`text-danger ${message ? 'visible' : 'invisible'}`}>
+            {message}
+          </small>
+          <div className='mb-3 d-flex justify-content-end mb-5'>
+            <a href='/users/log_in' className='link-primary'>
+              Forgot Password?
+            </a>
+          </div>
+          <ReCAPTCHA
+            sitekey='6LfFCdAiAAAAAMzlkMRfHBpUPXBfuJLfXVham1P5'
+            size='invisible'
+          />
+          <div className='mb-3 d-flex justify-content-center'>
+            <input
+              type='submit'
+              className='btn btn-primary w-75'
+              value='Login'
+            />
+          </div>
+        </form>
+        <p>
+          Don't have an account?{' '}
+          <span>
+            <a href='/users/sign_up' className='link-primary'>
+              Sign Up
+            </a>
+          </span>
+        </p>
       </div>
     </div>
   );

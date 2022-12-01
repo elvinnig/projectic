@@ -8,9 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchProject } from '../redux/slices/projectSlice';
 
-// icons
-import * as Icon from 'react-bootstrap-icons';
-
 const UserDashboard = () => {
   const [allProject, setAllProject] = useState([]);
   const navigate = useNavigate();
@@ -88,6 +85,9 @@ const UserDashboard = () => {
                   aria-expanded='false'
                 >
                   <button type='button' className='btn btn-labeled btn-link'>
+                    <span className='btn-label'>
+                      {/* <i className='bi bi-plus-circle me-1'></i> */}
+                    </span>
                     New Badge
                   </button>
                 </a>
@@ -102,7 +102,7 @@ const UserDashboard = () => {
                         <input
                           type='text'
                           className='form-control'
-                          id='badgename'
+                          id='username'
                           placeholder='Badge Name'
                           required
                           value={newBadge}
@@ -133,10 +133,10 @@ const UserDashboard = () => {
                       className='p-2 border-bottom'
                       key={index}
                       onClick={() => {
-                        setSelectedBadge(badge._id);
+                        setSelectedBadge(badge.name);
                       }}
                     >
-                      <span className='badge fs-6'>{badge.name}</span>
+                      {badge.name}
                     </li>
                   );
                 })}
@@ -156,8 +156,9 @@ const UserDashboard = () => {
                 }}
               >
                 <span className='btn-label'>
-                  <Icon.PlusSquareFill/> Add New Project
+                  <i className='bi bi-plus-circle me-1'></i>
                 </span>
+                Add New Project
               </button>
               <input
                 type='search'
@@ -179,17 +180,26 @@ const UserDashboard = () => {
             <div className='container-fluid'>
               {/* Change row-cols-md-2 to 4 if smaller card */}
               <div className='row row-cols-1 row-cols-md-2 g-4'>
-                {[...allProject].map((project, index) => {
-                  return (
-                    <ProjectCards
-                      key={project.name + index}
-                      image={project.thumbnail}
-                      title={project.name}
-                      id={project._id}
-                      //   badge={project.badge}
-                    />
-                  );
-                })}
+                {[...allProject]
+                  .filter((findProject) => {
+                    if (selectedBadge) {
+                      return findProject.badgeID.find((badge) => {
+                        return badge.name === selectedBadge;
+                      });
+                    }
+                    return findProject;
+                  })
+                  .map((project, index) => {
+                    return (
+                      <ProjectCards
+                        key={project.name + index}
+                        image={project.thumbnail}
+                        title={project.name}
+                        id={project._id}
+                        //   badge={project.badge}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>

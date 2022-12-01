@@ -13,7 +13,6 @@ const Footer = () => {
                     <li className="nav-item"><a href="#landing" className="nav-link px-2 text-muted">Why Projectic</a></li>
                     <li className="nav-item"><a href="#features" className="nav-link px-2 text-muted">Features</a></li>
                     <li className="nav-item"><a href="#contact" className="nav-link px-2 text-muted">Contact Us</a></li>
-                    <li className="nav-item"><a href="#about" className="nav-link px-2 text-muted">About Us</a></li>
                 </ul>
   </footer>
 </div>
