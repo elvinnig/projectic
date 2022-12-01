@@ -18,8 +18,6 @@ const UserDashboard = () => {
   const [newBadge, setNewBadge] = useState('');
   const [allBadges, setAllBadges] = useState([]);
   const [selectedBadge, setSelectedBadge] = useState('');
-  const [searchBadge, setSearchBadge] = useState('');
-  const [searchProject, setSearchProject] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem('current_project')) {
@@ -80,11 +78,7 @@ const UserDashboard = () => {
                 type='search'
                 id='badgeSearch'
                 className='form-control'
-                placeholder='Search badge...'
-                value={searchBadge}
-                onChange={(e) => {
-                  setSearchBadge(e.target.value);
-                }}
+                placeholder='Search badges...'
               />
               <div className='dropdown text-end'>
                 <a
@@ -142,26 +136,19 @@ const UserDashboard = () => {
                   Show All Project
                 </li>
                 {/* Maps through the badges available in Projects card */}
-                {[...allBadges]
-                  .filter((search) => {
-                    if (searchBadge) {
-                      return search.name.includes(searchBadge);
-                    }
-                    return search;
-                  })
-                  .map((badge, index) => {
-                    return (
-                      <li
-                        className='p-2 border-bottom'
-                        key={index}
-                        onClick={() => {
-                          setSelectedBadge(badge.name);
-                        }}
-                      >
-                        {badge.name}
-                      </li>
-                    );
-                  })}
+                {[...allBadges].map((badge, index) => {
+                  return (
+                    <li
+                      className='p-2 border-bottom'
+                      key={index}
+                      onClick={() => {
+                        setSelectedBadge(badge.name);
+                      }}
+                    >
+                      {badge.name}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -185,11 +172,7 @@ const UserDashboard = () => {
                 type='search'
                 id='projectSearch'
                 className='form-control w-50'
-                placeholder='Search project...'
-                value={searchProject}
-                onChange={(e) => {
-                  setSearchProject(e.target.value);
-                }}
+                placeholder='Search projects...'
               />
               {/* </div> */}
               {/* <button type='button' className='btn btn-primary'>
@@ -198,7 +181,7 @@ const UserDashboard = () => {
             </div>
 
             {/* Add Project Button */}
-            {/* <div className='d-flex justify-content-center m-3'></div> */}
+            <div className='d-flex justify-content-center m-3'></div>
             {/* <hr className="border border-black border-2"/> */}
 
             {/* Projects Container */}
@@ -213,12 +196,6 @@ const UserDashboard = () => {
                       });
                     }
                     return findProject;
-                  })
-                  .filter((search) => {
-                    if (searchProject) {
-                      return search.name.includes(searchProject);
-                    }
-                    return search;
                   })
                   .map((project, index) => {
                     return (
