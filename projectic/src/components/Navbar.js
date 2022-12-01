@@ -123,7 +123,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a href='#about' className='nav-link px-3 lead header-link'>
+                <a href='/about_us' className='nav-link px-3 lead header-link'>
                   About Us
                 </a>
               </li>
