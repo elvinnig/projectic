@@ -3,6 +3,7 @@ import LandingPage from "../components/LandingPage";
 import Features from "../components/Features";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
+import AboutUs from "../components/AboutUs";
 
 const Homepage = () => {
     return (
@@ -10,6 +11,7 @@ const Homepage = () => {
         <Navbar />
         <LandingPage />
         <Features />
+        <AboutUs />
         <ContactUs />
         <Footer />
         </>

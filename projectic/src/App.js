@@ -10,7 +10,9 @@ import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
+import Settings from './pages/Settings';
 import UpdateProject from './pages/UpdateProject';
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
         <Route path='/users/addFile' element={<AddFilePage />} />
         <Route path='/user/dashboard' element={<UserDashboard />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
+        <Route path='/users/settings' element={<Settings />} />
         <Route path='/users/update_project' element={<UpdateProject />} />
       </Routes>
     </div>
