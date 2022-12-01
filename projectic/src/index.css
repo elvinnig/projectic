@@ -19,10 +19,28 @@ code {
 }
 
 .header-link {
-  color: #222831;
+  color: #EEEEEE;
 }
 .header-link:hover {
+  color: #222831;
+}
+
+.register-button {
+  background-color: #393E46;
   color: #EEEEEE;
+}
+.register-button:hover {
+  color: antiquewhite;
+  background-color: #222831;
+}
+
+.login-button {
+  background-color: #393E46;
+  color: #EEEEEE;
+}
+.login-button:hover {
+  color: antiquewhite;
+  background-color: #222831;
 }
 
 .dropdown-color {

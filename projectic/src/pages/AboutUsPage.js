@@ -3,6 +3,7 @@ import ian from '../assets/homepage_images/ian.jpg';
 import wren from '../assets/homepage_images/wren.jpg';
 import pogi from '../assets/homepage_images/ed.jpg';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const AboutUs = () => {
     return (
@@ -118,6 +119,7 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 };

@@ -33,9 +33,9 @@ const Navbar = () => {
       <div className='container'>
           {/* Login Navigation */}
           {Object.keys(currentUser).length > 0 ? (
-          <div className='d-flex flex-wrap align-items-center justify-content-lg-between'>
+          <div className='d-flex flex-wrap align-items-center justify-content-sm-between'>
             {/*Left Logo */}
-            <a href='/' className='d-flex mb-2 mb-lg-0 align-self-start'>
+            <a href='http://localhost:3000/' className='d-flex mb-2 mb-lg-0 align-self-start'>
               <img
                 className='bi me-2'
                 alt='navbar-logo'
@@ -43,7 +43,7 @@ const Navbar = () => {
                 width='150'
               />
             </a>
-            <div className='d-flex align-items-center'>
+            <div className='d-flex align-items-center align-self-end'>
               <span className='fs-6 fw-bold'>Welcome, {currentUser.firstname}&nbsp;</span>
               <div className='dropdown text-end'>
                 <a
@@ -102,7 +102,7 @@ const Navbar = () => {
           ) : (
           <div className='d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start'>
             {/*Left Logo */}
-            <a href='/' className='d-flex align-items-center mb-2 mb-lg-0'>
+            <a href='http://localhost:3000/' className='d-flex align-items-center mb-2 mb-lg-0'>
               <img
                 className='bi me-2'
                 alt='navbar-logo'
@@ -113,12 +113,12 @@ const Navbar = () => {
             {/* Middle Navigation */}
             <ul className='nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
               <li>
-                <a href='#landing' className='nav-link px-3 lead header-link'>
+                <a href='http://localhost:3000/#landing' className='nav-link px-3 lead header-link'>
                   Why Projectic
                 </a>
               </li>
               <li>
-                <a href='#features' className='nav-link px-3 lead header-link'>
+                <a href='http://localhost:3000/#features' className='nav-link px-3 lead header-link'>
                   Features
                 </a>
               </li>
@@ -128,7 +128,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a href='#contact' className='nav-link px-3 lead header-link'>
+                <a href='http://localhost:3000/#contact' className='nav-link px-3 lead header-link'>
                   Contact Us
                 </a>
               </li>
@@ -136,7 +136,7 @@ const Navbar = () => {
             <div className='text-end'>
               <button
                 type='button'
-                className='btn btn-outline-dark me-2'
+                className='btn login-button me-2'
                 onClick={() => {
                   navigate('/users/log_in');
                 }}
@@ -145,7 +145,7 @@ const Navbar = () => {
               </button>
               <button
                 type='button'
-                className='btn btn-dark me-2'
+                className='btn me-2 register-button'
                 onClick={() => {
                   navigate('/users/sign_up');
                 }}
