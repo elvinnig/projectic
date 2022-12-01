@@ -5,13 +5,10 @@ import { Route, Routes } from 'react-router';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import Homepage from './pages/Homepage';
-import UserPage from './pages/UserPage';
 import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
-import UpdateProject from './pages/UpdateProject';
-
 function App() {
   return (
     <div className=''>
@@ -19,14 +16,12 @@ function App() {
         <Route path='/users/log_in' element={<LoginPage />} />
         <Route path='/users/sign_up' element={<RegistrationPage />} />
         <Route path='/' element={<Homepage />} />
-        <Route path='/users/user_settings' element={<UserPage />} />
-
         <Route path='/users/view_project' element={<ViewProject />} />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
-        <Route path='/users/addFile' element={<AddFilePage />} />
-        <Route path='/user/dashboard' element={<UserDashboard />} />
+        <Route path='/addFile' element={<AddFilePage />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
+        <Route path='/users/settings' element={<Settings />} />
         <Route path='/users/update_project' element={<UpdateProject />} />
       </Routes>
     </div>
