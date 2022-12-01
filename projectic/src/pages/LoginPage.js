@@ -62,7 +62,7 @@ function LoginPage() {
   }, []);
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
-      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 sign-up'>
+      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 border border-dark'>
         <div className='p-5 rounded-3 d-flex flex-column align-items-center'>
           <a href='http://localhost:3000/' className='text-center'>
             <img alt='logo_here' src={logo} className='rounded-circle w-25' />
