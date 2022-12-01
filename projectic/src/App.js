@@ -11,6 +11,8 @@ import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
 import Settings from './pages/Settings';
 import UpdateProject from './pages/UpdateProject';
+import AboutUsPage from './pages/AboutUsPage';
+
 function App() {
   return (
     <div className=''>
@@ -25,6 +27,7 @@ function App() {
         <Route path='/users/dashboard' element={<UserDashboard />} />
         <Route path='/users/settings' element={<Settings />} />
         <Route path='/users/update_project' element={<UpdateProject />} />
+        <Route path='/about_us' element={<AboutUsPage />} />
       </Routes>
     </div>
   );
