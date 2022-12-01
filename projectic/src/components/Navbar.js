@@ -35,7 +35,7 @@ const Navbar = () => {
           {Object.keys(currentUser).length > 0 ? (
           <div className='d-flex flex-wrap align-items-center justify-content-lg-between'>
             {/*Left Logo */}
-            <a href='/users/dashboard' className='d-flex mb-2 mb-lg-0 align-self-start'>
+            <a href='/' className='d-flex mb-2 mb-lg-0 align-self-start'>
               <img
                 className='bi me-2'
                 alt='navbar-logo'
