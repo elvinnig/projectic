@@ -43,6 +43,13 @@ const Navbar = () => {
                 width='150'
               />
             </a>
+            <ul className='nav d-flex flex-sm-column'>
+              <li>
+                <a href='http://localhost:3000/users/dashboard' className='lead header-link text-decoration-none justify-content-center align-items-center'>
+                  Dashboard
+                </a>
+              </li>
+            </ul>
             <div className='d-flex align-items-center align-self-end'>
               <span className='fs-6 fw-bold'>Welcome, {currentUser.firstname}&nbsp;</span>
               <div className='dropdown text-end'>
