@@ -8,7 +8,7 @@ const Features = () => {
         <hr className='featurette-divider'/>
         <div className='row featurette'>
             <div className='col-md-7 d-flex justify-content-center flex-column'>
-                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold landing-text'>Elegant and Simple</h2>
+                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold'>Elegant and Simple</h2>
                 <p className='lead fs-5'>
                     Projectic is a simple, elegant tool for project management. Projectic gives you everything you need to keep track of your projects.
                     A simple, easy to use, web-based project management tool for project managers and freelancers.
@@ -21,7 +21,7 @@ const Features = () => {
         <hr className='featurette-divider'/>
         <div className='row featurette'>
             <div className='col-md-7 order-md-2 d-flex justify-content-center flex-column   '>
-                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold landing-text'>Free Project Manager</h2>
+                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold'>Free Project Manager</h2>
                 <p className='lead fs-5'>
                     Projectic is a free project management app that manages all your project and task details such as templates, files, documents, tasks, tags, and attachments.
                     Projectic is a simple, easy to use, web-based project management tool for project managers and freelancers.
@@ -34,7 +34,7 @@ const Features = () => {
         <hr className='featurette-divider'/>
         <div className='row featurette'>
             <div className='col-md-7 d-flex justify-content-center flex-column'>
-                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold landing-text'>Simple and Powerful</h2>
+                <h2 className='featurette-heading fw-normal lh-1 display-5 fw-bold'>Simple and Powerful</h2>
                 <p className='lead fs-5'>
                     Projectic is a simple and powerful project management tool to help you manage and track your projects.
                     Easily keep track of your projects thanks to this free project management tool.
