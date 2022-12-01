@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 //* Logo
 import logo from '../assets/logo/projectic-title-dark.png';
 import icon from '../assets/logo/projectic-logo-large-dark.png';
+import * as Icon from 'react-bootstrap-icons';
 //*CSS
 import './css/registration.css';
 //*Redux
@@ -75,11 +76,12 @@ function RegistrationPage() {
   };
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
-      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 sign-up'>
+      <div className='reg-container d-flex justify-content-center align-items-center border border-2 rounded py-3 px-4 border border-dark'>
         <div className='reg-col-1'>
           <a href='http://localhost:3000/'>
-            <img alt='logo_here' src={logo} className='w-50 mb-3' />
+            <Icon.ArrowReturnLeft size={25} className='mb-2 me-2' color='black' />
           </a>
+          <img alt='logo_here' src={logo} className='w-50 mb-3' />
           <h6 className='mb-3'>Create you Projectic Account</h6>
           <form
             className=''
