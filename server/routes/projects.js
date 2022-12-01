@@ -36,15 +36,16 @@ router.post('/', (request, response) => {
 });
 
 //TODO: GET all data of the project
-// router.get('/:projectID', (request, response) => {
-//     Project.find( {_id: request.params.projectID } )
-//     .then( (result) => {
-//         console.log( result );
-//         if( typeof result === 'object' ){
-//             response.status(202).send( result );
-//         }
-//     });
-// });
+router.get('/update/:projectID', (request, response) => {
+  Project.find({ _id: request.params.projectID })
+    .populate('badgeID', 'name')
+    .exec((error, result) => {
+      console.log(result);
+      if (typeof result === 'object') {
+        response.send(result);
+      }
+    });
+});
 
 //TODO: GET all project by author id
 router.get('/:authorID', (request, response) => {
@@ -103,7 +104,7 @@ router.patch('/:projectID', (request, response) => {
 router.delete('/:projectID', (request, response) => {
   Project.deleteOne({ _id: request.params.projectID }).then((result) => {
     if (result.deletedCount === 1) {
-      response.status(200).send({ status: 'Project removed' });
+      response.status(200).send({ status: 'Project_removed' });
     } else {
       response.status(404).send({ status: 'This project is already deleted' });
       return;

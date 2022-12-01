@@ -7,14 +7,37 @@ import UploadWidget from '../components/UploadWidget';
 
 const AddFilePage = () => {
   const [files, setFiles] = useState([]);
+  const [allFiles, setAllFiles] = useState([]);
   const [fileTypes, setFileTypes] = useState([]);
   const [selectedFileType, setSelectedFileType] = useState('');
   const navigate = useNavigate();
 
+  const getProjectFiles = async () => {
+    await axios
+      .get(
+        `http://localhost:8000/api/v1/files/${localStorage.getItem(
+          'current_project'
+        )}`
+      )
+      .then((response) => {
+        // [x]
+        console.log({ allFiles: response.data });
+        setAllFiles(response.data);
+      });
+  };
+
+  const getFileType = async () => {
+    await axios
+      .get('http://localhost:8000/api/v1/filetypes')
+      .then((response) => {
+        // [x]
+        console.log({ allFileType: response.data });
+        setFileTypes(response.data);
+      });
+  };
   useEffect(() => {
-    axios.get('http://localhost:8000/api/v1/filetypes').then((response) => {
-      setFileTypes(response.data);
-    });
+    getFileType();
+    getProjectFiles();
   }, []);
   return (
     <>
@@ -54,13 +77,32 @@ const AddFilePage = () => {
         </div>
 
         <hr />
-        <div className='container'>
+        <div className='row'>
+          {/* Render Files that is already added in the project */}
+          {[...allFiles].map((file, index) => {
+            let fileTypeName = fileTypes.find((type) => {
+              return type._id === file.fileTypeId;
+            });
+            return (
+              <div className='col-sm-4 my-3' key={index}>
+                <div className='card text-white bg-info mb-3'>
+                  <div className='card-header'>{fileTypeName.name}</div>
+                  <div className='card-body'>
+                    <h5 className='card-title'>{file.filename}</h5>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          {/* Renders the new file to be add in the project */}
           {[...files].map((file, index) => {
             return (
-              <div className='card text-white bg-primary mb-3' key={index}>
-                <div className='card-header'>{file.fileType}</div>
-                <div className='card-body'>
-                  <h5 className='card-title'>{file.original_filename}</h5>
+              <div className='col-sm-4 my-3' key={index}>
+                <div className='card text-white bg-primary mb-3'>
+                  <div className='card-header'>{file.fileType}</div>
+                  <div className='card-body'>
+                    <h5 className='card-title'>{file.original_filename}</h5>
+                  </div>
                 </div>
               </div>
             );
@@ -72,6 +114,11 @@ const AddFilePage = () => {
           <button
             className='btn btn-primary'
             onClick={() => {
+              // if (allFiles.length > 0) {
+              //   //*Update Project file
+              //   console.log('Update Project');
+              // } else {
+              //*Project has no file
               files.map((file) => {
                 let fileType = fileTypes.find((type) => {
                   return type.name === file.fileType;
@@ -87,8 +134,15 @@ const AddFilePage = () => {
                     return console.log(response.data);
                   });
               });
+              // }
+
               localStorage.removeItem('current_prject');
-              navigate('/users/dashboard');
+              if (localStorage.getItem('file_action') === 'addFile') {
+                localStorage.removeItem('file_action');
+                navigate('/users/view_project');
+              } else {
+                navigate('/users/dashboard');
+              }
             }}
           >
             Save to project

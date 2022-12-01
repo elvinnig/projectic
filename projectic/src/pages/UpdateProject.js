@@ -5,8 +5,53 @@ import { useNavigate } from 'react-router';
 import Navbar from '../components/Navbar';
 import UploadWidget from '../components/UploadWidget';
 
-const AddProjectPage = () => {
+const UpdateProject = () => {
+  const navigate = useNavigate();
   const [allBadges, setAllBadges] = useState([]);
+  const [projectName, setProjectName] = useState('');
+  const [projectDescription, setProjectDescription] = useState('');
+  const [thumbnail, setThubnail] = useState('');
+  const [selectedBadge, setSelectedBadge] = useState([]);
+
+  const getProjectInfo = async () => {
+    await axios
+      .get(
+        `http://localhost:8000/api/v1/projects/update/${localStorage.getItem(
+          'current_project'
+        )}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setProjectName(response.data[0].name);
+        setProjectDescription(response.data[0].description);
+        setSelectedBadge(response.data[0].badgeID);
+        setThubnail(response.data[0].thumbnail);
+      });
+  };
+
+  const onSubmitProject = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        `http://localhost:8000/api/v1/projects/${localStorage.getItem(
+          'current_project'
+        )}`,
+        {
+          name: projectName,
+          description: projectDescription,
+          thumbnail: thumbnail,
+          badgeID: [...selectedBadge].map((badge) => {
+            return badge._id;
+          }),
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.status === 200) {
+          navigate('/users/view_project');
+        }
+      });
+  };
 
   useEffect(() => {
     axios
@@ -16,47 +61,15 @@ const AddProjectPage = () => {
         )}`
       )
       .then((response) => {
-        // [x]
-        console.log(response.data);
         setAllBadges([...response.data]);
       });
+    getProjectInfo();
   }, []);
-
-  const navigate = useNavigate();
-
-  const [projectName, setProjectName] = useState('');
-  const [projectDescription, setProjectDescription] = useState('');
-  const [thumbnail, setThubnail] = useState('');
-  const [selectedBadge, setSelectedBadge] = useState([]);
-
-  const onSubmitProject = (e) => {
-    e.preventDefault();
-    // [x]
-    console.log({ POST: selectedBadge });
-    axios
-      .post('http://localhost:8000/api/v1/projects', {
-        name: projectName,
-        description: projectDescription,
-        authorID: localStorage.getItem('projectic'),
-        thumbnail: thumbnail,
-        badgeID: [...selectedBadge].map((badge) => {
-          return badge._id;
-        }),
-      })
-      .then((response) => {
-        // [x]
-        console.log(response.data);
-        if (response.status === 200) {
-          localStorage.setItem('current_project', response.data.id);
-          navigate('/users/addFile');
-        }
-      });
-  };
   return (
     <>
       <Navbar />
       <div className='container border border-2 rounded my-2 p-5'>
-        <h3 className='mb-3 '>New Project</h3>
+        <h3 className='mb-3 '>Update Project</h3>
         <form
           onSubmit={(e) => {
             onSubmitProject(e);
@@ -171,29 +184,22 @@ const AddProjectPage = () => {
                 />
               </div>
               <div className='col d-flex justify-content-center'>
-                <img width='250px' id='thumbnail' src='' alt='' />
+                <img
+                  width='250px'
+                  id='thumbnail'
+                  src={thumbnail ? thumbnail : ''}
+                  alt=''
+                />
               </div>
             </div>
           </div>
           {/* SUBMIT BUTTON */}
-          <div className='d-flex justify-content-end'>
-            <div className='d-flex justify-content-end w-auto me-2'>
-              <form action='/users/dashboard'>
-                  <input
-                    value='discard'
-                    className='btn btn-danger'
-                    type='submit'
-                  />
-                </form>
-            </div>
-            {/* DISCARD BUTTON */}
-            <div className='d-flex justify-content-end w-auto'>
-              <input
-                value='Save'
-                className='btn btn-primary'
-                type='submit'
-              />
-            </div>
+          <div className='mb-5 d-flex justify-content-end'>
+            <input
+              value='Save'
+              className='btn btn-primary w-25'
+              type='submit'
+            />
           </div>
         </form>
       </div>
@@ -201,4 +207,4 @@ const AddProjectPage = () => {
   );
 };
 
-export default AddProjectPage;
+export default UpdateProject;
