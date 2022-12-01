@@ -34,12 +34,14 @@ code {
 }
 
 .login-button {
-  background-color: #393e46;
+  /* background-color: #393E46; */
   color: #eeeeee;
+  border: 1px solid white;
 }
 .login-button:hover {
   color: antiquewhite;
   background-color: #222831;
+  border: 0px solid white;
 }
 
 .dropdown-color {

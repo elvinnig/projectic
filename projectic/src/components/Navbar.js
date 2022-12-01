@@ -43,6 +43,13 @@ const Navbar = () => {
                 width='150'
               />
             </a>
+            <ul className='nav d-flex flex-sm-column flex-grow-1 justify-content-center ms-2'>
+              <li>
+                <a href='http://localhost:3000/users/dashboard' className='lead header-link text-decoration-none'>
+                  <h5>Dashboard</h5>
+                </a>
+              </li>
+            </ul>
             <div className='d-flex align-items-center align-self-end'>
               <span className='fs-6 fw-bold text-white me-2'>Welcome, {currentUser.username}&nbsp;</span>
               <div className='dropdown text-end'>
@@ -114,22 +121,22 @@ const Navbar = () => {
             <ul className='nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'>
               <li>
                 <a href='http://localhost:3000/#landing' className='nav-link px-3 lead header-link'>
-                  Why Projectic
+                  <h5>Why Projectic</h5>
                 </a>
               </li>
               <li>
                 <a href='http://localhost:3000/#features' className='nav-link px-3 lead header-link'>
-                  Features
+                  <h5>Features</h5>
                 </a>
               </li>
               <li>
                 <a href='/about_us' className='nav-link px-3 lead header-link'>
-                  About Us
+                  <h5>About Us</h5>
                 </a>
               </li>
               <li>
                 <a href='http://localhost:3000/#contact' className='nav-link px-3 lead header-link'>
-                  Contact Us
+                  <h5>Contact Us</h5>
                 </a>
               </li>
             </ul>
