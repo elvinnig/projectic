@@ -8,6 +8,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchProject } from '../redux/slices/projectSlice';
 
+// icons
+import * as Icon from 'react-bootstrap-icons';
+
 const UserDashboard = () => {
   const [allProject, setAllProject] = useState([]);
   const navigate = useNavigate();
@@ -91,9 +94,6 @@ const UserDashboard = () => {
                   aria-expanded='false'
                 >
                   <button type='button' className='btn btn-labeled btn-link'>
-                    <span className='btn-label'>
-                      {/* <i className='bi bi-plus-circle me-1'></i> */}
-                    </span>
                     New Badge
                   </button>
                 </a>
@@ -108,7 +108,7 @@ const UserDashboard = () => {
                         <input
                           type='text'
                           className='form-control'
-                          id='username'
+                          id='badgename'
                           placeholder='Badge Name'
                           required
                           value={newBadge}
@@ -178,9 +178,8 @@ const UserDashboard = () => {
                 }}
               >
                 <span className='btn-label'>
-                  <i className='bi bi-plus-circle me-1'></i>
+                  <Icon.PlusSquareFill/> Add New Project
                 </span>
-                Add New Project
               </button>
               <input
                 type='search'

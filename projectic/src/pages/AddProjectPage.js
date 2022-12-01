@@ -31,6 +31,7 @@ const AddProjectPage = () => {
 
   const onSubmitProject = (e) => {
     e.preventDefault();
+    // [x]
     console.log({ POST: selectedBadge });
     axios
       .post('http://localhost:8000/api/v1/projects', {
@@ -43,6 +44,7 @@ const AddProjectPage = () => {
         }),
       })
       .then((response) => {
+        // [x]
         console.log(response.data);
         if (response.status === 200) {
           localStorage.setItem('current_project', response.data.id);
@@ -174,12 +176,24 @@ const AddProjectPage = () => {
             </div>
           </div>
           {/* SUBMIT BUTTON */}
-          <div className='mb-5 d-flex justify-content-end'>
-            <input
-              value='Save'
-              className='btn btn-primary w-25'
-              type='submit'
-            />
+          <div className='d-flex justify-content-end'>
+            <div className='d-flex justify-content-end w-auto me-2'>
+              <form action='/users/dashboard'>
+                  <input
+                    value='discard'
+                    className='btn btn-danger'
+                    type='submit'
+                  />
+                </form>
+            </div>
+            {/* DISCARD BUTTON */}
+            <div className='d-flex justify-content-end w-auto'>
+              <input
+                value='Save'
+                className='btn btn-primary'
+                type='submit'
+              />
+            </div>
           </div>
         </form>
       </div>
