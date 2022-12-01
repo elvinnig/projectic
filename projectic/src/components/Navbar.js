@@ -29,7 +29,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <header className='p-3 navigation'>
+    <header className='p-3 navigation mb-3'>
       <div className='container'>
           {/* Login Navigation */}
           {Object.keys(currentUser).length > 0 ? (
