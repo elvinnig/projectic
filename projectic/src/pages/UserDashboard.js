@@ -8,6 +8,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchProject } from '../redux/slices/projectSlice';
 
+// icons
+import * as Icon from 'react-bootstrap-icons';
+
 const UserDashboard = () => {
   const [allProject, setAllProject] = useState([]);
   const navigate = useNavigate();
@@ -15,8 +18,6 @@ const UserDashboard = () => {
   const [newBadge, setNewBadge] = useState('');
   const [allBadges, setAllBadges] = useState([]);
   const [selectedBadge, setSelectedBadge] = useState('');
-  const [searchBadge, setSearchBadge] = useState('');
-  const [searchProject, setSearchProject] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem('current_project')) {
@@ -77,11 +78,7 @@ const UserDashboard = () => {
                 type='search'
                 id='badgeSearch'
                 className='form-control'
-                placeholder='Search badge...'
-                value={searchBadge}
-                onChange={(e) => {
-                  setSearchBadge(e.target.value);
-                }}
+                placeholder='Search badges...'
               />
               <div className='dropdown text-end'>
                 <a
@@ -91,9 +88,6 @@ const UserDashboard = () => {
                   aria-expanded='false'
                 >
                   <button type='button' className='btn btn-labeled btn-link'>
-                    <span className='btn-label'>
-                      {/* <i className='bi bi-plus-circle me-1'></i> */}
-                    </span>
                     New Badge
                   </button>
                 </a>
@@ -108,7 +102,7 @@ const UserDashboard = () => {
                         <input
                           type='text'
                           className='form-control'
-                          id='username'
+                          id='badgename'
                           placeholder='Badge Name'
                           required
                           value={newBadge}
@@ -132,36 +126,20 @@ const UserDashboard = () => {
             {/* Badge Container */}
             <div className='d-flex justify-content-center w-100'>
               <ul className='list-unstyled w-100'>
-                <li
-                  className='p-2 border-bottom'
-                  onClick={() => {
-                    setSelectedBadge('');
-                  }}
-                >
-                  {' '}
-                  Show All Project
-                </li>
                 {/* Maps through the badges available in Projects card */}
-                {[...allBadges]
-                  .filter((search) => {
-                    if (searchBadge) {
-                      return search.name.includes(searchBadge);
-                    }
-                    return search;
-                  })
-                  .map((badge, index) => {
-                    return (
-                      <li
-                        className='p-2 border-bottom'
-                        key={index}
-                        onClick={() => {
-                          setSelectedBadge(badge.name);
-                        }}
-                      >
-                        {badge.name}
-                      </li>
-                    );
-                  })}
+                {[...allBadges].map((badge, index) => {
+                  return (
+                    <li
+                      className='p-2 border-bottom'
+                      key={index}
+                      onClick={() => {
+                        setSelectedBadge(badge._id);
+                      }}
+                    >
+                      <span className='badge fs-6'>{badge.name}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -178,19 +156,14 @@ const UserDashboard = () => {
                 }}
               >
                 <span className='btn-label'>
-                  <i className='bi bi-plus-circle me-1'></i>
+                  <Icon.PlusSquareFill/> Add New Project
                 </span>
-                Add New Project
               </button>
               <input
                 type='search'
                 id='projectSearch'
                 className='form-control w-50'
-                placeholder='Search project...'
-                value={searchProject}
-                onChange={(e) => {
-                  setSearchProject(e.target.value);
-                }}
+                placeholder='Search projects...'
               />
               {/* </div> */}
               {/* <button type='button' className='btn btn-primary'>
@@ -199,39 +172,24 @@ const UserDashboard = () => {
             </div>
 
             {/* Add Project Button */}
-            {/* <div className='d-flex justify-content-center m-3'></div> */}
+            <div className='d-flex justify-content-center m-3'></div>
             {/* <hr className="border border-black border-2"/> */}
 
             {/* Projects Container */}
             <div className='container-fluid'>
               {/* Change row-cols-md-2 to 4 if smaller card */}
               <div className='row row-cols-1 row-cols-md-2 g-4'>
-                {[...allProject]
-                  .filter((findProject) => {
-                    if (selectedBadge) {
-                      return findProject.badgeID.find((badge) => {
-                        return badge.name === selectedBadge;
-                      });
-                    }
-                    return findProject;
-                  })
-                  .filter((search) => {
-                    if (searchProject) {
-                      return search.name.includes(searchProject);
-                    }
-                    return search;
-                  })
-                  .map((project, index) => {
-                    return (
-                      <ProjectCards
-                        key={project.name + index}
-                        image={project.thumbnail}
-                        title={project.name}
-                        id={project._id}
-                        //   badge={project.badge}
-                      />
-                    );
-                  })}
+                {[...allProject].map((project, index) => {
+                  return (
+                    <ProjectCards
+                      key={project.name + index}
+                      image={project.thumbnail}
+                      title={project.name}
+                      id={project._id}
+                      //   badge={project.badge}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
