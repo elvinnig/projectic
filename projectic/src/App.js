@@ -21,7 +21,7 @@ function App() {
         <Route path='/users/view_project' element={<ViewProject />} />
         {/* [x] Temporary Route */}
         <Route path='/user/add_project' element={<AddProjectPage />} />
-        <Route path='/addFile' element={<AddFilePage />} />
+        <Route path='/users/addFile' element={<AddFilePage />} />
         <Route path='/users/dashboard' element={<UserDashboard />} />
         <Route path='/users/settings' element={<Settings />} />
         <Route path='/users/update_project' element={<UpdateProject />} />
