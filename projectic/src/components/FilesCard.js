@@ -1,5 +1,6 @@
 // Imported to ViewProject
 import axios from 'axios';
+import * as Icon from 'react-bootstrap-icons';
 
 const FilesCard = ({ title, link, id }) => {
   return (
@@ -15,16 +16,8 @@ const FilesCard = ({ title, link, id }) => {
               className='btn btn-danger'
               data-bs-toggle='modal'
               data-bs-target='#deleteFile'
-              /*  onClick={() => {
-                axios
-                  .delete(`http://localhost:8000/api/v1/files/${id}`)
-                  .then((response) => {
-                    console.log(response.data);
-                    window.location.reload(false);
-                  });
-              }} */
             >
-              X
+              <Icon.Trash3Fill />
             </button>
           </h5>
         </div>

@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import moment from 'moment';
+import * as Icon from 'react-bootstrap-icons';
 
 const ViewProject = () => {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ const ViewProject = () => {
                 navigate('/users/dashboard');
               }}
             >
+              <Icon.ArrowReturnLeft className='me-1' />
               Back to dashboard
             </button>
           </div>
@@ -89,14 +91,16 @@ const ViewProject = () => {
                 navigate('/users/update_project');
               }}
             >
-              Update
+              <Icon.PenFill className='me-1' />
+              Update project
             </button>
             <button
               type='button'
-              className='btn btn-labeled btn-dark my-2 me-2'
+              className='btn btn-labeled btn-danger my-2 me-2'
               data-bs-toggle='modal'
               data-bs-target='#deleteProject'
             >
+              <Icon.Trash3Fill className='me-1' />
               Delete
             </button>
           </div>
@@ -162,7 +166,7 @@ const ViewProject = () => {
                   navigate('/users/addFile');
                 }}
               >
-                {' '}
+                <Icon.FolderPlus className='me-1' />
                 Add File
               </button>
             </span>

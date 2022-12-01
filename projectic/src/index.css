@@ -1,33 +1,32 @@
 body {
   margin: 0;
-  font-family:'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 code {
-  font-family:'Roboto', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Roboto', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 /* Navbar */
 .navigation {
-  background-color: #00ADB5;
+  background-color: #00adb5;
 }
 
 .header-link {
-  color: #EEEEEE;
+  color: #eeeeee;
 }
 .header-link:hover {
   color: #222831;
 }
 
 .register-button {
-  background-color: #393E46;
-  color: #EEEEEE;
+  background-color: #393e46;
+  color: #eeeeee;
 }
 .register-button:hover {
   color: antiquewhite;
@@ -35,8 +34,8 @@ code {
 }
 
 .login-button {
-  background-color: #393E46;
-  color: #EEEEEE;
+  background-color: #393e46;
+  color: #eeeeee;
 }
 .login-button:hover {
   color: antiquewhite;
@@ -44,66 +43,69 @@ code {
 }
 
 .dropdown-color {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 /* Homepage */
-.landing-text{
-  color: #393E46
+.landing-text {
+  color: #393e46;
 }
 
-.get-started{
-  color: #EEEEEE;
+.get-started {
+  color: #eeeeee;
   background-color: #222831;
 }
-.get-started:hover{
-  color: #00ADB5;
+.get-started:hover {
+  color: #00adb5;
 }
 
 .about-us {
   border-radius: 50%;
   height: 140px;
-  width:140px;
+  width: 140px;
 }
 
 /* Registration Page */
-.sign-up{
-  background-color: #00ADB5;
+.sign-up {
+  background-color: #00adb5;
 }
 
 /* All badges */
-.badge{
+.badge {
   background-color: #222831;
 }
 
 /* Settings */
-.update-popup{
-  background-color: #EEEEEE;
+.update-popup {
+  background-color: #eeeeee;
 }
 
-tbody{
-  background-color: #00ADB5;
+tbody {
+  background-color: #00adb5;
 }
 
-thead{
-  background-color: #393E46;
+thead {
+  background-color: #393e46;
 }
-
 
 /* Image dragging */
-img{
+img {
   pointer-events: none;
 }
 
 /* About Page */
-.about-button{
-  background-color: #00ADB5;
+.about-button {
+  background-color: #00adb5;
 }
-.about-button:hover{
+.about-button:hover {
   background-color: #222831;
-  color: #EEEEEE
+  color: #eeeeee;
 }
 
-.about-modal{
-  background-color: #EEEEEE;
+.about-modal {
+  background-color: #eeeeee;
+}
+
+.contactUsTextArea {
+  resize: none;
 }
