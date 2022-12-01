@@ -144,7 +144,7 @@ const ContactUs = () => {
               </li>
               <li>
                 <Icon.EnvelopeFill size={30} />
-                <p><a href = "mailto: projecticuplift@gmail.com" className='link-dark text-decoration-none' target='_blank' rel='noreferrer'> projecticuplift@gmail.com</a></p>
+                <p><a href = 'mailto: projecticuplift@gmail.com' className='link-dark text-decoration-none' target='_blank' rel='noreferrer'> projecticuplift@gmail.com</a></p>
               </li>
             </ul>
           </div>

@@ -108,7 +108,7 @@ const UserPage = () => {
           <form className='' onSubmit={onSubmitUpdateProfile}>
             <div className='mb-3'>
               <div className='row'>
-              <div className="mb-3">
+              <div className='mb-3'>
               <h5 className='mb-3'> <a href='/'>
                   <Icon.ArrowReturnLeft className='me-1'/>
                   </a> Manage Profile</h5>
@@ -116,7 +116,7 @@ const UserPage = () => {
                     Profile Picture
                     </label>
                     <div className='reg-col-1  justify-content-center'>
-                     <img className="rounded-circle float-start w-50 mb-3" alt='image_here'  
+                     <img className='rounded-circle float-start w-50 mb-3' alt='image_here'  
                         src={profile} id='thumbnail' />
                     <div className='mb-4 d-flex justify-content-flex-start'>
                   
