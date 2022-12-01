@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import UploadWidget from '../components/UploadWidget';
+import * as Icon from 'react-bootstrap-icons';
 //*CSS
 import './css/user.css'
 
@@ -108,12 +109,14 @@ const UserPage = () => {
             <div className='mb-3'>
               <div className='row'>
               <div className="mb-3">
-                 <h5 className='mb-3'>Profile Update</h5>
+              <h5 className='mb-3'> <a href='/'>
+                  <Icon.ArrowReturnLeft className='me-1'/>
+                  </a> Manage Profile</h5>
                     <label htmlFor='picture' className='form-label'>
-                    Profile Picture:
+                    Profile Picture
                     </label>
                     <div className='reg-col-1  justify-content-center'>
-                     <img className="rounded float-start w-50 mb-3" alt='image_here'  
+                     <img className="rounded-circle float-start w-50 mb-3" alt='image_here'  
                         src={profile} id='thumbnail' />
                     <div className='mb-4 d-flex justify-content-flex-start'>
                   
@@ -128,7 +131,7 @@ const UserPage = () => {
              
                 <div className='col'>
                   <label htmlFor='firstname' className='form-label'>
-                    First name:
+                    First name
                   </label>
                   <input
                     type='text'
@@ -143,7 +146,7 @@ const UserPage = () => {
                 </div>
                 <div className='col'>
                   <label htmlFor='lastname' className='form-label'>
-                    Last name:
+                    Last name
                   </label>
                   <input
                     type='text'
@@ -160,7 +163,7 @@ const UserPage = () => {
             </div>
             <div className='mb-3'>
               <label htmlFor='email' className='form-label'>
-                Email:
+                Email
               </label>
               <input
                 type='email'
@@ -175,7 +178,7 @@ const UserPage = () => {
             </div>
             <div className='mb-3'>
               <label htmlFor='username' className='form-label'>
-                Username:
+                Username
               </label>
               <input
                 type='text'
@@ -192,12 +195,12 @@ const UserPage = () => {
             <div className='mb-3'>
               <div className='row'>
                 <div className='mb-3 d-flex justify-content-center submit'>
-                <button className='btn btn-success px-2 margin'>Change Password</button>
-              <input
+                <button className='btn btn-warning px-2 margin' disabled> <Icon.PencilSquare className='me-1'/> Change Password</button>
+              <button
                 type='submit'  //submit button
-                className='btn btn-primary px-4'
-                value='UPDATE'
-              />
+                className='btn btn-success px-4'
+                
+              ><Icon.Folder className='me-2'/> Save Changes</button>
              </div>
             </div>
             </div>
