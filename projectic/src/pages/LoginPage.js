@@ -47,13 +47,19 @@ function LoginPage() {
               setMessage('');
               localStorage.setItem('projectic', user.data._id);
               //TODO: navigate to dashboard
-              navigate('/users/dashboard')
+              navigate('/users/dashboard');
             });
         } else {
           setMessage('Invalid Password!');
         }
       });
   };
+
+  useEffect(() => {
+    if ('projectic' in localStorage) {
+      return navigate('/users/dashboard');
+    }
+  }, []);
   return (
     <div className='vh-100 d-flex justify-content-center align-items-center'>
       <div className='p-5 rounded-3 d-flex flex-column align-items-center'>

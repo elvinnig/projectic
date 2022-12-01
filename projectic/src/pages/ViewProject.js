@@ -179,7 +179,7 @@ const ViewProject = () => {
           })}
         </div>
 
-        {/* MODAL FOR DELETE BUTTON */}
+        {/* MODAL FOR DELETE BUTTON PROJECT */}
         <div
           className='modal fade'
           id='deleteProject'
