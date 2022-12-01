@@ -1,3 +1,7 @@
+import emailicon from '../assets/homepage_images/email.png';
+import contact from '../assets/homepage_images/contact.png';
+import location from '../assets/homepage_images/location-pin.png';
+
 //* react-bootstrap-icon
 import * as Icon from 'react-bootstrap-icons';
 //*Axios
@@ -107,15 +111,15 @@ const ContactUs = () => {
                     <div className='col-md-3 text-center'>
                         <ul className='list-unstyled mb-0'>
                             <li>
-                                <Icon.GeoAltFill size={30} />
+                                <img alt='location' src={location} height='30'/>
                                 <p>Baguio, Benguet, PH</p>
                             </li>
                             <li>
-                                <Icon.PersonLinesFill size={30} />
+                                <img alt='contact' src={contact} height='30'/>
                                 <p>+63 (956) 772 0385</p>
                             </li>
                             <li>
-                                <Icon.EnvelopeFill size={30} />
+                                <img alt='email' src={email} height='30'/>
                                 <p>projecticuplift@gmail.com</p>
                             </li>
                         </ul>
