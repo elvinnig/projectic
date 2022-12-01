@@ -107,3 +107,7 @@ img {
 .about-modal {
   background-color: #eeeeee;
 }
+
+.contactUsTextArea {
+  resize: none;
+}

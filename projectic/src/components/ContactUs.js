@@ -108,7 +108,7 @@ const ContactUs = () => {
                       id='message'
                       name='message'
                       rows='4'
-                      className='form-control md-textarea'
+                      className='form-control md-textarea contactUsTextArea'
                       value={message}
                       onChange={(e) => {
                         setMessage(e.target.value);

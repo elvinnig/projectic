@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 //*Components
 import Navbar from '../components/Navbar';
 import UploadWidget from '../components/UploadWidget';
+import * as Icon from 'react-bootstrap-icons';
 
 const AddProjectPage = () => {
   const [allBadges, setAllBadges] = useState([]);
@@ -46,7 +47,7 @@ const AddProjectPage = () => {
         console.log(response.data);
         if (response.status === 200) {
           localStorage.setItem('current_project', response.data.id);
-          navigate('/addFile');
+          navigate('/users/addFile');
         }
       });
   };
@@ -178,19 +179,69 @@ const AddProjectPage = () => {
             <button
               type='button'
               className='me-3 btn btn-danger'
-              onClick={() => {
-                navigate('/users/dashboard');
-              }}
+              data-bs-toggle='modal'
+              data-bs-target='#discard'
             >
-              discard
+              <Icon.X className='me-1' />
+              Discard
             </button>
-            <input
-              value='Save'
-              className='btn btn-primary w-25'
-              type='submit'
-            />
+            <button className='btn btn-primary' type='submit'>
+              <Icon.Save2Fill className='me-1' />
+              Save Project
+            </button>
           </div>
         </form>
+        {/* DISCARD MODAL */}
+        <div
+          className='modal fade'
+          id='discard'
+          data-bs-backdrop='static'
+          data-bs-keyboard='false'
+          tabIndex='-1'
+          aria-labelledby='staticBackdropLabel'
+          aria-hidden='true'
+        >
+          <div className='modal-dialog modal-dialog-centered'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <h1
+                  className='modal-title fs-5 text-danger'
+                  id='staticBackdropLabel'
+                >
+                  Dicard Project
+                </h1>
+                <button
+                  type='button'
+                  className='btn-close'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                ></button>
+              </div>
+              <div className='modal-body'>
+                Are you sure you want to dicard this project?
+              </div>
+              <div className='modal-footer'>
+                <button
+                  type='button'
+                  className='btn btn-secondary'
+                  data-bs-dismiss='modal'
+                >
+                  No
+                </button>
+                <button
+                  type='button'
+                  className='btn btn-danger'
+                  data-bs-dismiss='modal'
+                  onClick={() => {
+                    navigate('/users/dashboard');
+                  }}
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

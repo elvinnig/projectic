@@ -51,7 +51,7 @@ const Navbar = () => {
               </li>
             </ul>
             <div className='d-flex align-items-center align-self-end'>
-              <span className='fs-6 fw-bold'>Welcome, {currentUser.firstname}&nbsp;</span>
+              <span className='fs-6 fw-bold text-white me-2'>Welcome, {currentUser.username}&nbsp;</span>
               <div className='dropdown text-end'>
                 <a
                   href='#'
