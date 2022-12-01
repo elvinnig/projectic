@@ -9,6 +9,9 @@ import ViewProject from './pages/ViewProject';
 import AddProjectPage from './pages/AddProjectPage';
 import AddFilePage from './pages/AddFilePage';
 import UserDashboard from './pages/UserDashboard';
+import Settings from './pages/Settings';
+import UpdateProject from './pages/UpdateProject';
+
 function App() {
   return (
     <div className=''>
