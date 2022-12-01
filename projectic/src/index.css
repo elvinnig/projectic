@@ -5,9 +5,74 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #EEEEEE;
 }
 
 code {
   font-family:'Roboto', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Navbar */
+.navigation {
+  background-color: #00ADB5;
+}
+
+.header-link {
+  color: #222831;
+}
+.header-link:hover {
+  color: #EEEEEE;
+}
+
+.dropdown-color {
+  background-color: #EEEEEE;
+}
+
+/* Homepage */
+.landing-text{
+  color: #393E46
+}
+
+.get-started{
+  color: #EEEEEE;
+  background-color: #222831;
+}
+.get-started:hover{
+  color: #00ADB5;
+}
+
+.about-us {
+  border-radius: 50%;
+  height: 140px;
+  width:140px;
+}
+
+/* Registration Page */
+.sign-up{
+  background-color: #00ADB5;
+}
+
+/* All badges */
+.badge{
+  background-color: #222831;
+}
+
+/* Settings */
+.update-popup{
+  background-color: #EEEEEE;
+}
+
+tbody{
+  background-color: #00ADB5;
+}
+
+thead{
+  background-color: #393E46;
+}
+
+
+/* Image dragging */
+img{
+  pointer-events: none;
 }

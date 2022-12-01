@@ -175,6 +175,15 @@ const AddProjectPage = () => {
           </div>
           {/* SUBMIT BUTTON */}
           <div className='mb-5 d-flex justify-content-end'>
+            <button
+              type='button'
+              className='me-3 btn btn-danger'
+              onClick={() => {
+                navigate('/users/dashboard');
+              }}
+            >
+              discard
+            </button>
             <input
               value='Save'
               className='btn btn-primary w-25'
